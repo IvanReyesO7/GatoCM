@@ -6,4 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  before_validation :generate_api_token
+
+  private 
+  def generate_api_token
+    self.api_token = SecureRandom.hex(24)
+  end
 end
