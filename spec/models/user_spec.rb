@@ -7,9 +7,8 @@ RSpec.describe User, type: :model do
     }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Password can't be blank")
   end
 
-  it "Should be invalid without an api token" do
-    expect {
-      user = create(:no_api_token_user, email: 'example@me.com')
-    }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Api token can't be blank")
+  it "Should create an api token after creation" do
+    user = create(:no_api_token_user, email: 'example@me.com')
+    expect(user.api_token).not_to be_nil
   end
 end
