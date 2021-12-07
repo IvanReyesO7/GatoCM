@@ -1,24 +1,86 @@
-# README
+## For occasional developers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You can contribute to this project without having to install all the dependencies in your computer (Gems and Yarn packages),
+you can set a docker container that will isolate the development enviornment of this application,
+you only need to install docker, follow the steps below, and you are all set.
 
-Things you may want to cover:
+## Install Docker
 
-* Ruby version
+Choose your OS and install the desktop version of Docker.
+You should read this website and follow the directions:
+[https://docs.docker.com/desktop/](https://docs.docker.com/desktop/).
 
-* System dependencies
+If you install the OSX version, this installer includes `docker-compose` which this app uses to bring up
+multiple containers, in our case we need one for our rails app and other one for Postgre.
 
-* Configuration
+If you are not using OSX, you'll need to figure out the best to install
+`docker`, `docker-compose`, and the dependencies for your system.
 
-* Database creation
+## Building the base rails image
 
-* Database initialization
+You can build the base unicorn image by running the following command:
 
-* How to run the test suite
+```
+docker-compose build api_console
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Anytime you add a RubyGem to Gemfile or a node package to package.json, you
+will need to re-run that command.
 
-* Deployment instructions
+## Initializing the app for the first time
 
-* ...
+You should read the section about the rails app credentials below before proceeding here.
+
+Assuming you've setup your credentials, you can proceed to bring up the app
+for the first time.
+
+To bring up the app for the first time you need to first initialize the database.
+
+You can do this by running the following command **warning resets db**:
+
+```
+docker-compose run api_console bundle exec rake db:reset db:migrate 
+```
+
+If you get the error "Your Yarn packages are out of date!",
+run the following command before trying the command above again:
+
+```
+docker-compose run api_console bundle exec yarn install --check-files
+```
+
+## Updating migrations
+
+```
+docker-compose run api_console bundle exec rake db:migrate
+```
+
+## Bringing the app up
+
+To bring the app up, run:
+
+```
+docker-compose up
+```
+
+Once the app is up, you should be able to visit the site in your browser at
+localhost:3000. You may need to wait a few seconds for the app to start.
+
+
+## Bringing the app down
+
+To bring the app down, run:
+
+```
+docker-compose down
+```
+
+Or press CTRL-C in the terminal where it is running.
+
+## Runing the Rspecs
+
+To run the rspecs, run:
+
+```
+docker-compose run api_console bundle exec rspec  
+```
