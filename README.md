@@ -1,24 +1,90 @@
-# README
+## Api Console Manager
+This a small personal project, the idea is to create a centralized and easy to visualize api console manager.
+Something similar to a CMS, but with more flexible endpoints and the ability to create objects through the terminal with no need to use the UI.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## For occasional developers
 
-Things you may want to cover:
+You can contribute to this project without having to install all the dependencies in your computer (Gems and Yarn packages),
+you can set a docker container that will isolate the development enviornment of this application,
+you only need to install docker, follow the steps below, and you are all set.
 
-* Ruby version
+## Install Docker
 
-* System dependencies
+Choose your OS and install the desktop version of Docker.
+You should read this website and follow the directions:
+[https://docs.docker.com/desktop/](https://docs.docker.com/desktop/).
 
-* Configuration
+If you install the OSX version, this installer includes `docker-compose` which this app uses to bring up
+multiple containers, in our case we need one for our rails app and other one for Postgre.
 
-* Database creation
+If you are not using OSX, you'll need to figure out the best to install
+`docker`, `docker-compose`, and the dependencies for your system.
 
-* Database initialization
+## Building the base rails image
 
-* How to run the test suite
+You can build the base unicorn image by running the following command:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+docker-compose build api_console
+```
 
-* Deployment instructions
+Anytime you add a RubyGem to Gemfile or a node package to package.json, you
+will need to re-run that command.
 
-* ...
+## Initializing the app for the first time
+
+You should read the section about the rails app credentials below before proceeding here.
+
+Assuming you've setup your credentials, you can proceed to bring up the app
+for the first time.
+
+To bring up the app for the first time you need to first initialize the database.
+
+You can do this by running the following command **warning resets db**:
+
+```
+docker-compose run api_console bundle exec rake db:reset db:migrate 
+```
+
+If you get the error "Your Yarn packages are out of date!",
+run the following command before trying the command above again:
+
+```
+docker-compose run api_console bundle exec yarn install --check-files
+```
+
+## Updating migrations
+
+```
+docker-compose run api_console bundle exec rake db:migrate
+```
+
+## Bringing the app up
+
+To bring the app up, run:
+
+```
+docker-compose up
+```
+
+Once the app is up, you should be able to visit the site in your browser at
+localhost:3000. You may need to wait a few seconds for the app to start.
+
+
+## Bringing the app down
+
+To bring the app down, run:
+
+```
+docker-compose down
+```
+
+Or press CTRL-C in the terminal where it is running.
+
+## Runing the Rspecs
+
+To run the rspecs, run:
+
+```
+docker-compose run api_console bundle exec rspec  
+```
