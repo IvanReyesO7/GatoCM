@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  has_many :applications
+  
   before_validation :generate_api_token
   validates :api_token, presence: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
