@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "Should have a password" do
+    expect { 
+      user = create(:no_password_user, email: 'example@me.com')
+    }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Password can't be blank")
+  end
 end
