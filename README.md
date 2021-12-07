@@ -1,3 +1,7 @@
+## Api Console Manager
+This a small personal project, the idea is to create a centralized and easy to visualize api console manager.
+Something similar to a CMS, but with more flexible endpoints and the ability to create objects through the terminal with no needs to use the UI.
+
 ## For occasional developers
 
 You can contribute to this project without having to install all the dependencies in your computer (Gems and Yarn packages),
