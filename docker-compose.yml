@@ -10,7 +10,7 @@ services:
     volumes:
     - ./tmp/db:/var/lib/postgresql/data
 
-  api_console_manager:
+  api_console:
     build: .
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     environment:
@@ -18,7 +18,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=db
     volumes:
-    - .:/api_console_manager
+    - .:/api_console
     ports:
     - "3000:3000"
     depends_on:
