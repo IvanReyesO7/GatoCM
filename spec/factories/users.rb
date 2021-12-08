@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :user do
     email { "ivan@me.com" }
+    username { "ivan" }
     password  { "password" }
     api_token { "123456789abcdef" }
 
