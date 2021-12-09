@@ -8,7 +8,7 @@ RSpec.describe "Applications", type: :request do
 
   describe "GET /index" do
     it "Should show user their created apps" do
-      get user_applications_path(user_id: user.id)
+      get user_applications_path(user_username: user.username)
       expect(response).to have_http_status(200)
     end
   end
@@ -16,7 +16,7 @@ RSpec.describe "Applications", type: :request do
   describe "GET /show" do
     it "Should let you access your own apps" do
       app = create(:application, user: user)
-      get "/users/#{user.id}/applications/#{app.id}"
+      get "/#{user.username}/applications/#{app.id}"
       expect(response).to have_http_status(200)
     end
   end
