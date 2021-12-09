@@ -6,7 +6,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    if User.find(params[:user_id])
+    if User.find_by(username: params[:user_username])
       @application = Application.find(application_params[:id])
     else
       raise ActiveRecord::RecordNotFound.new
@@ -36,6 +36,6 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:name, :description, :user_id, :id)
+    params.permit(:name, :description, :user_id, :id, :username)
   end
 end
