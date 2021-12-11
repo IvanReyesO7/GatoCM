@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def generate_api_token
     self.api_token = SecureRandom.hex(24)
   end
+
+  def to_param
+    username
+  end
 end

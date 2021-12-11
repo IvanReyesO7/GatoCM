@@ -1,0 +1,4 @@
+<p><%= @user %></p>
+<% @applications.each do |application| %>
+  <p><%= "#{application.id}. #{application.name}" %></p>
+<% end %>
