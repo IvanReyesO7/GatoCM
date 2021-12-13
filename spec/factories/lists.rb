@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :list do
-    name { "MyString" }
-    application { nil }
+    name { "my_list" }
+    application
   end
 end
