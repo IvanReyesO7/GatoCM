@@ -7,7 +7,8 @@ class ApplicationsController < ApplicationController
 
   def show
     if User.find_by(username: params[:user_username])
-      @application = Application.find(application_params[:id])
+      @application = Application.find_by(name: application_params[:name])
+      @lists ||= @application.lists
     else
       raise ActiveRecord::RecordNotFound.new
     end
@@ -18,17 +19,17 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = Application.new(application_params)
+    @application = Application.new(name: application_params)
     @application.valid? ? @Application.save! : raise
   end
 
   def update
-    @application = Application.find(application_params[:id])
+    @application = Application.find_by(name: application_params[:name])
     @application.update(application_params)
   end
 
   def destroy
-    @application = Application.find(application_params[:id])
+    @application = Application.find_by(name: application_params[:name])
     @application.destroy
     redirect_to user_applications_path
   end
