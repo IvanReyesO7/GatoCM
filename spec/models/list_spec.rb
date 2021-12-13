@@ -6,6 +6,6 @@ RSpec.describe List, type: :model do
     list_1 = create(:list, application: app)
     expect {
       list_2 = create(:list, application: app)
-    }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Name You already have an list in this app with that name.")
+    }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Name You already have a list in this app with that name.")
   end
 end
