@@ -2,3 +2,9 @@
 <p><%= @application.id %></p>
 <p><%= @application.name %></p>
 <p><%= @application.description %></p>
+<% if @lists %>
+  <h2>Lists</h2>
+  <% @lists.each do |list| %>
+  <p><%= list.name %></p>
+  <% end %>
+<% end %>
