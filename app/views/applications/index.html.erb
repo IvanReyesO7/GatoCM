@@ -1,4 +1,4 @@
 <p><%= @user %></p>
 <% @applications.each do |application| %>
-  <p><%= "#{application.id}. #{application.name}" %></p>
+  <%= link_to "#{application.id} - #{application.name}", user_application_path(name: application.name) %>
 <% end %>
