@@ -16,10 +16,10 @@ class List < ApplicationRecord
 
   def create_component
     Component.new.tap do |comp|
-      comp.real_component_type = self.class,
-      comp.real_component_id = self.id,
-      comp.real_component_title = self.name,
-      comp.application = self.application)
+      comp.real_component_type = self.class
+      comp.real_component_id = self.id
+      comp.real_component_title = self.name
+      comp.application = self.application
       comp.save!
     end
   end
