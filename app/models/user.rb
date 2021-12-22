@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   has_many :applications
   has_many :lists, through: :applications
+  has_many :images, through: :applications
+  has_many :codes, through: :applications
+  has_many :components, through: :applications
+
   before_validation :generate_api_token
   validates :api_token, presence: true
   validates :username, presence: true, uniqueness: true
