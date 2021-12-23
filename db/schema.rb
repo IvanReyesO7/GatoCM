@@ -66,10 +66,8 @@ ActiveRecord::Schema.define(version: 2021_12_22_133427) do
     t.bigint "application_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
     t.string "name_format"
     t.index ["application_id"], name: "index_lists_on_application_id"
-    t.index ["user_id"], name: "index_lists_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
