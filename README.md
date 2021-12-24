@@ -22,14 +22,14 @@ If you are not using OSX, you'll need to figure out the best to install
 
 ## Building the base rails image
 
-You can build the base unicorn image by running the following command:
+You can build the base api_console image by running the following command:
 
 ```
 docker-compose build api_console
 ```
 
 Anytime you add a RubyGem to Gemfile or a node package to package.json, you
-will need to re-run that command.
+will need to re-run this command.
 
 ## Initializing the app for the first time
 
@@ -57,6 +57,19 @@ docker-compose run api_console bundle exec yarn install --check-files
 
 ```
 docker-compose run api_console bundle exec rake db:migrate
+```
+
+## Populating the db
+⚠️ This will reset your database
+
+```
+docker-compose run api_console bundle exec rake db:drop db:create db:migrate db:seed
+```
+
+## Launching the rails console
+
+```
+docker-compose run api_console rails console
 ```
 
 ## Bringing the app up
