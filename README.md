@@ -2,6 +2,19 @@
 This a small personal project, the idea is to create a centralized and easy to visualize api console manager.
 Something similar to a CMS, but with more flexible endpoints and the ability to create objects through the terminal with no need to use the UI.
 
+## How to contribute
+
+For consistency purposes, add your name/nickname to the start of the name of your branch followed by a keyword of the feature you are developing.
+
+For instance:
+`ivan-add-app-controller`
+`emanuel-updated-list-view`
+
+Please name your branches and your commits in English, as well as your reviews and comments.
+Avoid merging your own Pull Requests, please make sure that someone else reviews and merges them.
+Before making a Pull Request use `git status` or `git diff` to check that you are only pushing what you are changing.
+Thank you for contributing to this project.
+
 ## For occasional developers
 
 You can contribute to this project without having to install all the dependencies in your computer (Gems and Yarn packages),
@@ -102,12 +115,3 @@ To run the rspecs, run:
 docker-compose run api_console bundle exec rspec  
 ```
 
-## How to contribute
-
-For consistency purposes, add your name/nickname to the start of the name of your branch followed by a keyword of the feature you are developing.
-
-For instance:
-`ivan-add-app-controller`
-
-Please name your branches and your commits in English, as well as your reviews and comments.
-Thank you for contributing to this project.
