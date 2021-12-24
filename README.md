@@ -11,9 +11,12 @@ For instance:
 `emanuel-updated-list-view`
 
 Please name your branches and your commits in English, as well as your reviews and comments.
+
 Avoid merging your own Pull Requests, please make sure that someone else reviews and merges them.
+
 Before making a Pull Request use `git status` or `git diff` to check that you are only pushing what you are changing.
-Thank you for contributing to this project.
+
+Thank you so much for contributing to this project 🙏🏽.
 
 ## For occasional developers
 
@@ -45,11 +48,6 @@ Anytime you add a RubyGem to Gemfile or a node package to package.json, you
 will need to re-run this command.
 
 ## Initializing the app for the first time
-
-You should read the section about the rails app credentials below before proceeding here.
-
-Assuming you've setup your credentials, you can proceed to bring up the app
-for the first time.
 
 To bring up the app for the first time you need to first initialize the database.
 
