@@ -109,4 +109,5 @@ For consistency purposes, add your name/nickname to the start of the name of you
 For instance:
 `ivan-add-app-controller`
 
-Please name your branches and your commits in english 🇬🇧.
+Please name your branches and your commits in English, as well as your reviews and comments.
+Thank you for contributing to this project.
