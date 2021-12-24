@@ -92,7 +92,7 @@ docker-compose up
 ```
 
 Once the app is up, you should be able to visit the site in your browser at
-localhost:3000. You may need to wait a few seconds for the app to start.
+`localhost:3000`. You may need to wait a few seconds for the app to start.
 
 
 ## Bringing the app down
