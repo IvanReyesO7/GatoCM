@@ -101,3 +101,12 @@ To run the rspecs, run:
 ```
 docker-compose run api_console bundle exec rspec  
 ```
+
+## How to contribute
+
+For tracking porpuses add your name/nickname to the name of your branches followed by a key word of the feature you are developing.
+
+For instance:
+`ivan-add-app-controller`
+
+Please name your branches and your commits in english.
