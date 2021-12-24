@@ -1,6 +1,12 @@
 class Code < ApplicationRecord
   belongs_to :application
+  
+  before_create :generate_name_fomat
   after_save :create_component
+
+  def generate_name_fomat
+    self.name_format = self.title.downcase.gsub(" ","_")
+  end 
 
   def create_component
     Component.new.tap do |comp|
