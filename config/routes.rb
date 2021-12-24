@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :applications, param: :name, path: '/', only: [:show, :edit, :update, :destroy] do
       resources :lists, param: :name_format, path: '/list/', only: [:show, :edit, :update, :destroy]
       resources :images, param: :name_format, path: '/image/', only: [:show, :edit, :update, :destroy]
-      resources :codes, param: :name_format, path '/code/', only: [:show, :edit, :update, :destroy]
+      resources :codes, param: :name_format, path: '/code/', only: [:show, :edit, :update, :destroy]
     end
   end
 end
