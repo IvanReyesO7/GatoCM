@@ -3,7 +3,7 @@ class List < ApplicationRecord
   has_many :items
 
   before_create :generate_name_fomat
-  after_save :create_component
+  after_create :create_component
 
   validates :name, presence: true, uniqueness: { scope: :application_id,
                                                  case_sensitive: true,
