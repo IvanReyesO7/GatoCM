@@ -4,6 +4,11 @@ class Image < ApplicationRecord
   before_create :generate_name_fomat
   after_save :create_component
 
+  validates :title, presence: true, uniqueness: { scope: :application_id,
+                                                  case_sensitive: true,
+                                                  message: "You already have an image in this app with that title."}
+  validates :url, presence: true
+
   def generate_name_fomat
     self.name_format = self.title.downcase.gsub(" ","_")
   end 
