@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
   
   resources :users, param: :username, path: '/', only: [:show, :edit, :update, :destroy] do
-    get '/applications' => 'applications#index', as: :applications_index
+    get '/' => 'applications#index', as: :applications_index
     resources :applications, param: :name, path: '/', only: [:show, :edit, :update, :destroy] do
       resources :lists, param: :name_format, path: '/list/', only: [:show, :edit, :update, :destroy]
       resources :images, param: :name_format, path: '/image/', only: [:show, :edit, :update, :destroy]

@@ -1,7 +1,7 @@
 class ApplicationsController < ApplicationController
   
   def index
-    @user = current_user
+    @user = User.find_by(username: application_params[:user_username])
     @applications = Application.where(user: @user)
   end
 
@@ -37,6 +37,6 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:name, :description, :user_id, :id, :username)
+    params.permit(:name, :description, :user_id, :id, :user_username)
   end
 end
