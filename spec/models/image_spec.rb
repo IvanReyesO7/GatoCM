@@ -18,7 +18,7 @@ RSpec.describe Image, type: :model do
     }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Url can't be blank")
   end
 
-  it "Should not allow to create an image with a taken name in the same app" do
+  it "Should not allow to create an image with a taken title in the same app" do
     image_1 = create(:image, application: application)
     expect {
       image_2 = create(:image, application: application)

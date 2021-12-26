@@ -2,7 +2,12 @@ class Code < ApplicationRecord
   belongs_to :application
   
   before_create :generate_name_fomat
-  after_save :create_component
+  after_create :create_component
+
+  validates :title, presence: true, uniqueness: { scope: :application_id,
+                                                  case_sensitive: true,
+                                                  message: "You already have a piece of code in this app with that title."}
+  validates :content, presence: true
 
   def generate_name_fomat
     self.name_format = self.title.downcase.gsub(" ","_")
