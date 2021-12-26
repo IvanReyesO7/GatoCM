@@ -24,4 +24,9 @@ RSpec.describe Image, type: :model do
       image_2 = create(:image, application: application)
     }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Title You already have an image in this app with that title.")
   end
+
+  it "Should generate title formate before creation" do
+    new_image = create(:list, name:"New Image For My New App")
+    expect(new_image.name_format).to eq("new_image_for_my_new_app")
+  end
 end

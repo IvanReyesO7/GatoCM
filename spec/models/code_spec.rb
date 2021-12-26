@@ -24,4 +24,9 @@ RSpec.describe Code, type: :model do
       code_2 = create(:code, application: application)
     }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Title You already have a piece of code in this app with that title.")
   end
+
+  it "Should generate name formate before creation" do
+    new_code = create(:code, title:"New Code For My New App", application: application)
+    expect(new_code.name_format).to eq("new_code_for_my_new_app")
+  end
 end
