@@ -1,6 +1,8 @@
 class ImagesController < ApplicationController
   def show
-    @image = Image.find_by(name_format: images_params[:name_format])
+    @user = User.find_by(username: images_params[:user_username])
+    @application = Application.find_by(user: @user, name: images_params[:application_name])
+    @image = Image.find_by(application: @application ,name_format: images_params[:name_format])
   end
 
   private
