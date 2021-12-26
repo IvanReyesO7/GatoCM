@@ -1,10 +1,27 @@
-<p><%= @user %></p>
-<p><%= @application.id %></p>
-<p><%= @application.name %></p>
+<p><%= @user.username %></p>
+<h1><%= @application.name %></h1>
 <p><%= @application.description %></p>
 <% if @lists && !@lists.empty? %>
   <h2>Lists</h2>
   <% @lists.each do |list| %>
-  <p><%= list.name %></p>
+  <ul>
+    <li><%= link_to list.name, user_application_list_path(application_name: @application.name, name_format: list.name_format) %></li>
+  </ul>
+  <% end %>
+<% end %>
+<% if @images && !@images.empty? %>
+  <h2>Images</h2>
+  <% @images.each do |image| %>
+  <ul>
+    <li><%= image.title %></li>
+  </ul>
+  <% end %>
+<% end %>
+<% if @codes && !@codes.empty? %>
+  <h2>Code</h2>
+  <% @codes.each do |code| %>
+  <ul>
+    <li><%= code.title %></li>
+  </ul>
   <% end %>
 <% end %>

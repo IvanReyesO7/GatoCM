@@ -7,8 +7,11 @@ class ApplicationsController < ApplicationController
 
   def show
     if User.find_by(username: params[:user_username])
-      @application = Application.find_by(name: application_params[:name])
-      @lists ||= @application.lists
+      @user = User.find_by(username: application_params[:user_username])
+      @application = Application.find_by(name: application_params[:name], user: @user)
+      @lists = @application.lists
+      @images = @application.images
+      @codes = @application.codes
     else
       raise ActiveRecord::RecordNotFound.new
     end
