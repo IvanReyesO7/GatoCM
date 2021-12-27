@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def raise_unless_visible_list
-    if !ListVisibilityPolicy.new.allowed?(@list, current_user)
+  def raise_unless_visible_component
+    if !ComponentVisibilityPolicy.new.allowed?(@component, current_user)
       raise ActiveRecord::RecordNotFound.new
     end
   end
