@@ -18,4 +18,9 @@ RSpec.describe User, type: :model do
       user_2 = create(:user, username: "ivan")
     }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Username has already been taken, Email has already been taken")
   end
+
+  it "Should create user admin nil as default" do
+    user = create(:user)
+    expect(user.admin).to be_falsy
+  end
 end
