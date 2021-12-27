@@ -1,8 +1,16 @@
 class ApplicationsController < ApplicationController
   
   def index
-    @user = User.find_by(username: application_params[:user_username])
-    @applications = Application.where(user: @user)
+    if application_params[:user_username] == current_user.username || current_user.admin?
+      @user = User.find_by(username: application_params[:user_username])
+      if @user
+        @applications = Application.where(user: @user)
+      else
+        redirect_to root_path, :alert => "User does not exist"
+      end
+    else
+      redirect_to root_path, :alert => "Not authorized"
+    end
   end
 
   def show
