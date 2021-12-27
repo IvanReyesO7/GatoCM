@@ -4,6 +4,7 @@ FactoryBot.define do
     username { "ivan" }
     password  { "password" }
     api_token { "123456789abcdef" }
+    admin { nil }
 
     trait :no_password do
       password { nil }

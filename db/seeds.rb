@@ -16,6 +16,7 @@ usernames.each do |username|
     usr.email = "#{username}@email.com"
     usr.password = "password"
     usr.username = username
+    usr.admin = true if username == 'Ivan'
     usr.save!
     puts "User: #{username} created"
     # Create App
