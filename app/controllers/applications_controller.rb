@@ -1,21 +1,16 @@
 class ApplicationsController < ApplicationController
   before_action :select_user_and_applications_from_params, only: [:index]
-  before_action :raise_unless_visible, only: [:index]
-
+  before_action :select_user_and_application_from_params, only: [:show]
+  before_action :raise_unless_visible_multiple, only: [:index]
+  before_action :raise_unless_visible, only: [:show]
   
   def index
   end
 
   def show
-    if User.find_by(username: params[:user_username])
-      @user = User.find_by(username: application_params[:user_username])
-      @application = Application.find_by(name: application_params[:name], user: @user)
-      @lists = @application.lists
-      @images = @application.images
-      @codes = @application.codes
-    else
-      raise ActiveRecord::RecordNotFound.new
-    end
+    @lists = @application.lists
+    @images = @application.images
+    @codes = @application.codes
   end
   
   def new
@@ -47,5 +42,10 @@ class ApplicationsController < ApplicationController
   def select_user_and_applications_from_params
     @user = User.find_by(username: application_params[:user_username])
     @applications = Application.where(user: @user)
+  end
+
+  def select_user_and_application_from_params
+    @user = User.find_by(username: application_params[:user_username])
+    @application = Application.find_by(name: application_params[:name], user: @user)
   end
 end
