@@ -10,7 +10,7 @@ class Image < ApplicationRecord
   validates :url, presence: true
 
   def generate_name_fomat
-    self.name_format = self.title.downcase.gsub(" ","_")
+    self.name_format = self.title.downcase.gsub(/[\s|\.]/,"_")
   end 
 
   def create_component

@@ -11,7 +11,7 @@ class List < ApplicationRecord
 
 
   def generate_name_fomat
-    self.name_format = self.name.downcase.gsub(" ","_")
+    self.name_format = self.name.downcase.gsub(/[\s|\.]/,"_")
   end 
 
   def create_component

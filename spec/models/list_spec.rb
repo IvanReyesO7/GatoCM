@@ -12,7 +12,7 @@ RSpec.describe List, type: :model do
   end
 
   it "Should generate name formate before creation" do
-    new_list = create(:list, name:"New List For My New App")
+    new_list = create(:list, name:"New List.For My New App")
     expect(new_list.name_format).to eq("new_list_for_my_new_app")
   end
 end
