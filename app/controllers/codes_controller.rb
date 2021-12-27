@@ -6,6 +6,10 @@ class CodesController < ApplicationController
   def show
   end
 
+  def new
+    @code = Code.new
+  end
+
   private
 
   def codes_params
