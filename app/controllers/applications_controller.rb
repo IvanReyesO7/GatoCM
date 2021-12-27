@@ -1,14 +1,17 @@
 class ApplicationsController < ApplicationController
   
   def index
-    @user = current_user
+    @user = User.find_by(username: application_params[:user_username])
     @applications = Application.where(user: @user)
   end
 
   def show
     if User.find_by(username: params[:user_username])
-      @application = Application.find_by(name: application_params[:name])
-      @lists ||= @application.lists
+      @user = User.find_by(username: application_params[:user_username])
+      @application = Application.find_by(name: application_params[:name], user: @user)
+      @lists = @application.lists
+      @images = @application.images
+      @codes = @application.codes
     else
       raise ActiveRecord::RecordNotFound.new
     end
@@ -37,6 +40,6 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:name, :description, :user_id, :id, :username)
+    params.permit(:name, :description, :user_id, :id, :user_username)
   end
 end

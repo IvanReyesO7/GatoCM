@@ -1,3 +1,6 @@
+<% if current_user %>
+  <p>Logged as: <%= current_user.username %></p>
+<% end %>
 <h1>Hello world!</h1>
 <h2>Que lindo que ya estoy aquí</h2>
-<%= current_user %>
+
