@@ -13,7 +13,7 @@
   <h2>Images</h2>
   <% @images.each do |image| %>
   <ul>
-    <li><%= image.title %></li>
+    <li><%= link_to image.title, user_application_image_path(application_name: @application.name, name_format: image.name_format) %></li>
   </ul>
   <% end %>
 <% end %>
@@ -21,7 +21,7 @@
   <h2>Code</h2>
   <% @codes.each do |code| %>
   <ul>
-    <li><%= code.title %></li>
+    <li><%= link_to code.title, user_application_code_path(application_name: @application.name, name_format: code.name_format) %></li>
   </ul>
   <% end %>
 <% end %>

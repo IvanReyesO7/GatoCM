@@ -1,6 +1,6 @@
 <p><%= @user.username %></p>
 <% @applications.each do |application| %>
   <ul>
-  <li><%= link_to application.name, user_application_path(name: application.name) %></li>
+    <li><%= link_to application.name, user_application_path(name: application.name) %></li>
   </ul>
 <% end %>
