@@ -26,7 +26,7 @@ RSpec.describe Image, type: :model do
   end
 
   it "Should generate title formate before creation" do
-    new_image = create(:list, name:"New Image For My New App")
+    new_image = create(:list, name:"New.Image.For.My.New_App")
     expect(new_image.name_format).to eq("new_image_for_my_new_app")
   end
 end

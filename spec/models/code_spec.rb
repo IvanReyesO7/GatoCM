@@ -26,7 +26,7 @@ RSpec.describe Code, type: :model do
   end
 
   it "Should generate name formate before creation" do
-    new_code = create(:code, title:"New Code For My New App", application: application)
-    expect(new_code.name_format).to eq("new_code_for_my_new_app")
+    new_code = create(:code, title:"New Code..For My New App", application: application)
+    expect(new_code.name_format).to eq("new_code__for_my_new_app")
   end
 end

@@ -1,8 +1,9 @@
 class ApplicationsController < ApplicationController
+  before_action :select_user_and_applications_from_params, only: [:index]
+  before_action :raise_unless_visible, only: [:index]
+
   
   def index
-    @user = User.find_by(username: application_params[:user_username])
-    @applications = Application.where(user: @user)
   end
 
   def show
@@ -22,7 +23,7 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = Application.new(name: application_params)
+    @application = Application.new(name: application_params, user: current_user)
     @application.valid? ? @Application.save! : raise
   end
 
@@ -41,5 +42,10 @@ class ApplicationsController < ApplicationController
 
   def application_params
     params.permit(:name, :description, :user_id, :id, :user_username)
+  end
+
+  def select_user_and_applications_from_params
+    @user = User.find_by(username: application_params[:user_username])
+    @applications = Application.where(user: @user)
   end
 end
