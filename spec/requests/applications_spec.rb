@@ -24,5 +24,13 @@ RSpec.describe "Applications", type: :request do
       get "/#{user.username}/#{app.name}"
       expect(response).to have_http_status(200)
     end
+
+    it "Should not let you access other users apps" do
+      user_2 = create(:user, username: "user_2", email: "user_2@me.com")
+      app_2 = create(:application, user: user_2)
+      expect do 
+        get "/#{user_2.username}/#{app_2.name}"
+      end.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end
