@@ -14,7 +14,12 @@ FactoryBot.define do
       api_token { nil }
     end
 
+    trait :admin do
+      admin { true }
+    end
+
     factory :no_password_user, traits: [:no_password]
     factory :no_api_token_user, traits: [:no_api_token]
+    factory :admin_user, traits: [:admin]
   end
 end
