@@ -14,6 +14,11 @@ RSpec.describe "Applications", type: :request do
   end
 
   describe "GET /show" do
+
+    before do
+      sign_in(user)
+    end
+    
     it "Should let you access your own apps" do
       app = create(:application, user: user)
       get "/#{user.username}/#{app.name}"
