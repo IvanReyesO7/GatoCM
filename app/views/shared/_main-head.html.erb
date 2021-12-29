@@ -2,7 +2,7 @@
   <em>Api console</em>
   <div class="logged-info">
     <% if current_user %>
-      <p>[Logged as: <%= link_to current_user.username, user_applications_index_path, :method => :get %>]</p>
+      <p>[Logged as: <%= link_to current_user.username, user_applications_index_path(user_username: current_user.username), :method => :get %>]</p>
       <%= link_to '[Sign out]', destroy_user_session_path, :method => :delete %>
     <% else %>
       <%= link_to '[Sign in]', new_user_session_path, :method => :new %>
