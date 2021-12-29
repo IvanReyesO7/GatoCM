@@ -13,7 +13,9 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    
-    <%= yield %>
+    <div class="main-container">
+      <%= render partial: 'shared/main-head'%>
+      <%= yield %>
+    </div>
   </body>
 </html>
