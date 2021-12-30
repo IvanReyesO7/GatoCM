@@ -1,20 +1,32 @@
 class ListsController < ApplicationController
   
   before_action :select_user_application_list_from_params, only: [:show]
-  before_action :select_user_application_from_params, only: [:new]
+  before_action :select_user_application_from_params, only: [:new, :create]
   before_action :raise_unless_visible_component, only: [:show]
 
   def show
   end
 
   def new
-    @list =  List.new(application: @application)
+    @list =  List.new
+  end
+
+  def create
+    @list = List.create(
+      name: list_params[:list][:name],
+      application: @application
+    )
+    if @list.save
+      redirect_to user_application_path(name: @application.name)
+    else
+      render :new
+    end
   end
 
   private
 
   def list_params
-    params.permit(:user_username, :application_name, :name_format)
+    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, { list: [:name] })
   end
 
   def select_user_application_list_from_params
