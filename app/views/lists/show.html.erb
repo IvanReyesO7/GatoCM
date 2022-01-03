@@ -4,4 +4,4 @@
     <li><%= item.content %></li>
   </ul>
 <%  end %>
-<%= button_to "Create Item", new_user_application_list_url(application_name: @application.name), method: :get %>
+<%= button_to "Create Item", new_user_application_list_item_url(list_name_format: @list.name_format), method: :get %>
