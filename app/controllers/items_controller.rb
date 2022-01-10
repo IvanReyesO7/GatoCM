@@ -27,8 +27,8 @@ class ItemsController < ApplicationController
   end
 
   def select_user_application_list_from_params
-    @user = User.find_by(username: item_params[:user_username])
-    @application = Application.find_by(user: @user, name: item_params[:application_name])
-    @list = List.find_by(name_format: item_params[:list_name_format], application: @application)
+    @user = User.find_by!(username: item_params[:user_username])
+    @application = Application.find_by!(user: @user, name: item_params[:application_name])
+    @list = List.find_by!(name_format: item_params[:list_name_format], application: @application)
   end
 end

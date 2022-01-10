@@ -17,8 +17,8 @@ class CodesController < ApplicationController
   end
 
   def select_user_application_code_from_params
-    @user = User.find_by(username: codes_params[:user_username])
-    @application = Application.find_by(user: @user, name: codes_params[:application_name])
-    @component = @code = Code.find_by(application: @application, name_format: codes_params[:name_format])
+    @user = User.find_by!(username: codes_params[:user_username])
+    @application = Application.find_by!(user: @user, name: codes_params[:application_name])
+    @component = @code = Code.find_by!(application: @application, name_format: codes_params[:name_format])
   end
 end
