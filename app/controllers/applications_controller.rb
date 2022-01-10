@@ -23,12 +23,12 @@ class ApplicationsController < ApplicationController
   end
 
   def update
-    @application = Application.find_by(name: application_params[:name])
+    @application = Application.find_by!(name: application_params[:name])
     @application.update(application_params)
   end
 
   def destroy
-    @application = Application.find_by(name: application_params[:name])
+    @application = Application.find_by!(name: application_params[:name])
     @application.destroy
     redirect_to user_applications_path
   end
@@ -40,12 +40,12 @@ class ApplicationsController < ApplicationController
   end
 
   def select_user_and_applications_from_params
-    @user = User.find_by(username: application_params[:user_username])
+    @user = User.find_by!(username: application_params[:user_username])
     @applications = Application.where(user: @user)
   end
 
   def select_user_and_application_from_params
-    @user = User.find_by(username: application_params[:user_username])
-    @application = Application.find_by(name: application_params[:name], user: @user)
+    @user = User.find_by!(username: application_params[:user_username])
+    @application = Application.find_by!(name: application_params[:name], user: @user)
   end
 end

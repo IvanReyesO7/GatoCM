@@ -31,13 +31,13 @@ class ListsController < ApplicationController
   end
 
   def select_user_application_list_from_params
-    @user = User.find_by(username: list_params[:user_username])
-    @application = Application.find_by(name: list_params[:application_name], user: @user)
-    @component = @list = List.find_by(name_format: list_params[:name_format], application: @application)
+    @user = User.find_by!(username: list_params[:user_username])
+    @application = Application.find_by!(name: list_params[:application_name], user: @user)
+    @component = @list = List.find_by!(name_format: list_params[:name_format], application: @application)
   end
 
   def select_user_application_from_params
-    @user = User.find_by(username: list_params[:user_username])
-    @application = Application.find_by(name: list_params[:application_name], user: @user)
+    @user = User.find_by!(username: list_params[:user_username])
+    @application = Application.find_by!(name: list_params[:application_name], user: @user)
   end
 end

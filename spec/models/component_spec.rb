@@ -29,13 +29,13 @@ RSpec.describe Component, type: :model do
 
   it "Should point to an existing component" do
     list = create(:list, application: application)
-    component = Component.find_by(real_component_id: list.id)
+    component = Component.find_by!(real_component_id: list.id)
     expect(list).to eq(List.find(component.real_component_id))
   end
 
   it "Should point to an existing method class" do
     image = create(:image, application: application)
-    component = Component.find_by(real_component_id: image.id)
+    component = Component.find_by!(real_component_id: image.id)
     expect(component.real_component_type.constantize).to eq(image.class)
   end
 end
