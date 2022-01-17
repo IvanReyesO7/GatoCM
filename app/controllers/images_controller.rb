@@ -17,8 +17,8 @@ class ImagesController < ApplicationController
   end
 
   def select_user_application_image_from_params
-    @user = User.find_by(username: images_params[:user_username])
-    @application = Application.find_by(user: @user, name: images_params[:application_name])
-    @component = @image = Image.find_by(application: @application ,name_format: images_params[:name_format])
+    @user = User.find_by!(username: images_params[:user_username])
+    @application = Application.find_by!(user: @user, name: images_params[:application_name])
+    @component = @image = Image.find_by!(application: @application ,name_format: images_params[:name_format])
   end
 end
