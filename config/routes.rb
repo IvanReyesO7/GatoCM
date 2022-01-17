@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       scope "/:username/:application_name/" do
         get "/lists" => "lists#all"
+        get "/lists/:list_name_format" => "lists#items"
       end
     end
   end
