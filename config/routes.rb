@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       scope "/:username/:application_name/" do
-        get "/lists" => "lists_api#all"
+        get "/lists" => "lists#all"
       end
     end
   end

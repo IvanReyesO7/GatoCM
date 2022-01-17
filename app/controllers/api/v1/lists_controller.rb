@@ -1,7 +1,8 @@
-class Api::V1::ListsApiController < Api::Controller
+class Api::V1::ListsController < Api::Controller
   def all
     @user = User.find_by!(username: list_params[:username])
     @app = Application.find_by!(name: list_params[:application_name], user: @user)
+    @lists = @app.lists
   end
 
   def list_params
