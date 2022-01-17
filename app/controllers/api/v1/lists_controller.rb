@@ -1,7 +1,7 @@
 class Api::V1::ListsController < Api::Controller
-  before_action :select_user_application_from_params, only: [:all, :items]
-  before_action :select_token_from_request, only: [:all, :items]
-  before_action :raise_unless_valid_api_token, only: [:all, :items]
+  before_action :select_user_application_from_params, only: [:all, :items, :random]
+  before_action :select_token_from_request, only: [:all, :items, :random]
+  before_action :raise_unless_valid_api_token, only: [:all, :items, :random]
 
   def all
     @lists = @app.lists
@@ -10,6 +10,11 @@ class Api::V1::ListsController < Api::Controller
   def items
     @list = List.find_by!(name_format: list_params[:list_name_format], application: @app)
     @items = @list.items
+  end
+
+  def random
+    @list = List.find_by!(name_format: list_params[:list_name_format], application: @app)
+    @random = @list.items.sample
   end
 
   private

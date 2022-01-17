@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       scope "/:username/:application_name/" do
         get "/lists" => "lists#all"
         get "/lists/:list_name_format" => "lists#items"
+        get "/lists/:list_name_format/random" => "lists#random"
       end
     end
   end
