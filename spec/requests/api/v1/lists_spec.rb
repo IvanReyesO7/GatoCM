@@ -16,5 +16,11 @@ describe Api::V1::ListsController, type: :request do
       get "/api/v1/#{user.username}/#{appuri.name}/lists", params: {}, headers: {'Authorization' => "#{user.api_token}"}
       expect(response).to have_http_status(200)
     end
+
+    it "Should return forbiden if no correct api token" do
+      get "/api/v1/#{user.username}/#{appuri.name}/lists", params: {}, headers: {'Authorization' => "12345"}
+      expect(response).to have_http_status(403)
+    end
+
   end
 end
