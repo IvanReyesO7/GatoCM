@@ -1,2 +1,3 @@
 <h1><%= @image.title %></h1>
 <p><%= @image.url %></p>
+<%= button_to "Back", user_application_path(name: @application.name), method: :get %>
