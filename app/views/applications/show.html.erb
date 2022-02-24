@@ -5,6 +5,8 @@
   <% @lists.each do |list| %>
   <ul>
     <li><%= link_to list.name, user_application_list_path(application_name: @application.name, name_format: list.name_format) %></li>
+    <%# Delete btn %>
+    <%# <li><%= link_to "Destroy", user_application_list_path(application_name: @application.name, name_format: list.name_format), method: :delete %></li> %>
   </ul>
   <% end %>
   <%= button_to "Create list", new_user_application_list_url(application_name: @application.name), method: :get %>

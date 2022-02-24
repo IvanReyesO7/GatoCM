@@ -25,9 +25,11 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list = List.find_by!(name_format: list_params[:list][:name])
+    @list = List.find_by!(name_format: list_params[:name_format])
     @list.items.destroy_all
     @list.destroy!
+
+    redirect_to user_application_path(name: @application.name)
   end
 
   private
