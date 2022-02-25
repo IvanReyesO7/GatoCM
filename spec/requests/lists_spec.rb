@@ -173,5 +173,19 @@ RSpec.describe "Lists", type: :request do
         end.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
+
+    context "Admin user" do
+
+      before do
+        sign_in(admin)
+      end
+
+      it "Should allow admin users to delete user's lists" do
+        @app = create(:application, user: user_1)
+        @list = create(:list, application: @app)
+        delete "/#{user_1.username}/#{@app.name}/lists/#{@list.name_format}"
+        expect(response.status).to eq(302)
+      end
+    end
   end
 end
