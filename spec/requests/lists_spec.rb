@@ -134,4 +134,24 @@ RSpec.describe "Lists", type: :request do
       end
     end
   end
+
+  describe "DELETE/ " do
+    let(:user) { create(:user) }
+    let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
+    let(:admin) { create(:list) }
+
+    context "Normal user" do
+
+      before do
+        sign_in(user)
+      end
+
+      it "Should allow you to delete the lists in your own app" do
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        delete "/#{user.username}/#{@app.name}/lists/#{@list.name_format}"
+        expect(response.status).to eq(302)    
+      end
+    end
+  end
 end
