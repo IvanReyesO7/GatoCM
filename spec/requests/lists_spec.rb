@@ -164,6 +164,14 @@ RSpec.describe "Lists", type: :request do
         delete "/#{user.username}/#{@app.name}/lists/#{@list.name_format}"
         expect(response.status).to eq(302)    
       end
+
+      it "Should not allow users to delete other's lists" do
+        @app = create(:application, user: user_1)
+        @list = create(:list, application: @app)
+        expect do
+          delete "/#{user_1.username}/#{@app.name}/lists/#{@list.name_format}"
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 end
