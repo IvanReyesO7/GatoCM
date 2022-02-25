@@ -152,6 +152,18 @@ RSpec.describe "Lists", type: :request do
         delete "/#{user.username}/#{@app.name}/lists/#{@list.name_format}"
         expect(response.status).to eq(302)    
       end
+
+      it "Should allow to delete lists full of items" do
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        i = 1
+        5.times do
+          create(:item, content: "This is list #{i}", list: @list)
+          i += 1
+        end
+        delete "/#{user.username}/#{@app.name}/lists/#{@list.name_format}"
+        expect(response.status).to eq(302)    
+      end
     end
   end
 end
