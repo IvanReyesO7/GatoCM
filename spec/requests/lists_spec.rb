@@ -134,4 +134,58 @@ RSpec.describe "Lists", type: :request do
       end
     end
   end
+
+  describe "DELETE/ " do
+    let(:user) { create(:user) }
+    let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
+    let(:admin) { create(:list) }
+
+    context "Normal user" do
+
+      before do
+        sign_in(user)
+      end
+
+      it "Should allow you to delete the lists in your own app" do
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        delete "/#{user.username}/#{@app.name}/lists/#{@list.name_format}"
+        expect(response.status).to eq(302)    
+      end
+
+      it "Should allow to delete lists full of items" do
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        i = 1
+        5.times do
+          create(:item, content: "This is list #{i}", list: @list)
+          i += 1
+        end
+        delete "/#{user.username}/#{@app.name}/lists/#{@list.name_format}"
+        expect(response.status).to eq(302)    
+      end
+
+      it "Should not allow users to delete other's lists" do
+        @app = create(:application, user: user_1)
+        @list = create(:list, application: @app)
+        expect do
+          delete "/#{user_1.username}/#{@app.name}/lists/#{@list.name_format}"
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "Admin user" do
+
+      before do
+        sign_in(admin)
+      end
+
+      it "Should allow admin users to delete user's lists" do
+        @app = create(:application, user: user_1)
+        @list = create(:list, application: @app)
+        delete "/#{user_1.username}/#{@app.name}/lists/#{@list.name_format}"
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end
