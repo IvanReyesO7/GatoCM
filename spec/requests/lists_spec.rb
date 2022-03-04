@@ -138,7 +138,8 @@ RSpec.describe "Lists", type: :request do
   describe "DELETE/ " do
     let(:user) { create(:user) }
     let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
-    let(:admin) { create(:list) }
+    let(:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+
 
     context "Normal user" do
 
@@ -167,7 +168,7 @@ RSpec.describe "Lists", type: :request do
 
       it "Should not allow users to delete other's lists" do
         @app = create(:application, user: user_1)
-        @list = create(:list, application: @app)
+        @list = create(:list, application: @app, name_format: 'holis')
         expect do
           delete "/#{user_1.username}/#{@app.name}/lists/#{@list.name_format}"
         end.to raise_error(ActiveRecord::RecordNotFound)
