@@ -1,5 +1,6 @@
+require 'json'
+
 class ListsController < ApplicationController
-  
   before_action :select_user_application_list_from_params, only: [:show]
   before_action :select_user_application_from_params, only: [:new, :create, :destroy]
   before_action :raise_unless_visible_component, only: [:show]
@@ -33,23 +34,28 @@ class ListsController < ApplicationController
   end
 
   def import_items
-    @list = List.find_by!(name_format: list_params["list_name_format"])
-    if list_params["list"]["uploaded_file"].content_type == "application/x-yaml"
-      begin
-        path = list_params["list"]["uploaded_file"].tempfile.path
-        p path
+    begin
+      @list = List.find_by!(name_format: list_params["list_name_format"])
+      content_type = list_params["list"]["uploaded_file"].content_type
+      path = list_params["list"]["uploaded_file"].tempfile.path
+      case content_type 
+      when "application/x-yaml"
         items = YAML.load_file(path)["items"]
-        items.each do |item|
-          Item.create!(list: @list, content: item)
-        end
+        items.each { |item| Item.create!(list: @list, content: item) }
         flash[:alert] = "Success!"
         redirect_to user_application_list_path(name_format: list_params["list_name_format"])
-      rescue
-        flash[:alert] = "Wrong format of the yaml file"
+      when "application/json"
+        file = File.read(path)
+        items = JSON.parse(file)["items"]
+        items.each { |item| Item.create!(list: @list, content: item) }
+        flash[:alert] = "Success!"
+        redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+      else
+        flash[:alert] = "Content type not recognized"
         redirect_to user_application_list_path(name_format: list_params["list_name_format"])
       end
-    else
-      flash[:alert] = "Content type not recognized"
+    rescue => error
+      flash[:alert] = "Something went wrong. #{error}"
       redirect_to user_application_list_path(name_format: list_params["list_name_format"])
     end
   end
