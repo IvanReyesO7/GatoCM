@@ -41,15 +41,11 @@ class ListsController < ApplicationController
       case content_type 
       when "application/x-yaml"
         items = YAML.load_file(path)["items"]
-        items.each { |item| Item.create!(list: @list, content: item) }
-        flash[:alert] = "Success!"
-        redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+        parse_items_from_hash(items)
       when "application/json"
         file = File.read(path)
         items = JSON.parse(file)["items"]
-        items.each { |item| Item.create!(list: @list, content: item) }
-        flash[:alert] = "Success!"
-        redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+        parse_items_from_hash(items)
       else
         flash[:alert] = "Content type not recognized"
         redirect_to user_application_list_path(name_format: list_params["list_name_format"])
@@ -58,6 +54,16 @@ class ListsController < ApplicationController
       flash[:alert] = "Something went wrong. #{error}"
       redirect_to user_application_list_path(name_format: list_params["list_name_format"])
     end
+  end
+
+  def import_succesfull
+    flash[:alert] = "Success!"
+    redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+  end
+
+  def parse_items_from_hash(items)
+    items.each { |item| Item.create!(list: @list, content: item) }
+    import_succesfull
   end
 
   private
