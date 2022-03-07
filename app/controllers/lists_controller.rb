@@ -32,6 +32,10 @@ class ListsController < ApplicationController
     redirect_to user_application_path(name: @application.name)
   end
 
+  def import_items
+    raise
+  end
+
   private
 
   def list_params
