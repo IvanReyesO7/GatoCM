@@ -33,13 +33,18 @@ class ListsController < ApplicationController
   end
 
   def import_items
-    raise
+    if list_params["list"]["uploaded_file"].content_type == "application/x-yaml"
+      raise
+    else
+      flash[:alert] = "Ay ome"
+      redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+    end
   end
 
   private
 
   def list_params
-    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, { list: [:name] })
+    params.permit(:user_username, :application_name, :list_name_format, :name_format, :authenticity_token, :commit, { list: [:name, :uploaded_file] })
   end
 
   def select_user_application_list_from_params
