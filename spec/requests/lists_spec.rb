@@ -189,4 +189,40 @@ RSpec.describe "Lists", type: :request do
       end
     end
   end
+
+  describe "POST /import_items" do
+    let(:user) { create(:user) }
+    let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
+    let(:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+
+    context "Normal user"do
+      before do
+        sign_in(user)
+      end
+
+      it "Should allow users to create items from an uploaded file" do
+        @file = fixture_file_upload('sentences.json')
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        post "/#{user.username}/#{@app.name}/lists/#{@list.name_format}/import", params: {"list" => {uploaded_file: @file}}
+        expect(@list.items.count).to eq(40)
+      end
+
+      it "Should allow users to create items fredirect after creating items" do
+        @file = fixture_file_upload('sentences.json')
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        post "/#{user.username}/#{@app.name}/lists/#{@list.name_format}/import", params: {"list" => {uploaded_file: @file}}
+        expect(response.status).to eq(302)
+      end
+
+      it "Should not allow users to create items from a file different to JSON or YAML" do
+        @file = fixture_file_upload('sentences.html')
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        post "/#{user.username}/#{@app.name}/lists/#{@list.name_format}/import", params: {"list" => {uploaded_file: @file}}
+        expect(response.status).to raise_error(StandardError)
+      end
+    end
+  end
 end
