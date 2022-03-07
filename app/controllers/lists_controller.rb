@@ -33,10 +33,23 @@ class ListsController < ApplicationController
   end
 
   def import_items
+    @list = List.find_by!(name_format: list_params["list_name_format"])
     if list_params["list"]["uploaded_file"].content_type == "application/x-yaml"
-      raise
+      begin
+        path = list_params["list"]["uploaded_file"].tempfile.path
+        p path
+        items = YAML.load_file(path)["items"]
+        items.each do |item|
+          Item.create!(list: @list, content: item)
+        end
+        flash[:alert] = "Success!"
+        redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+      rescue
+        flash[:alert] = "Wrong format of the yaml file"
+        redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+      end
     else
-      flash[:alert] = "Ay ome"
+      flash[:alert] = "Content type not recognized"
       redirect_to user_application_list_path(name_format: list_params["list_name_format"])
     end
   end
