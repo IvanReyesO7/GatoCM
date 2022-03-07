@@ -1,5 +1,6 @@
+require 'json'
+
 class ListsController < ApplicationController
-  
   before_action :select_user_application_list_from_params, only: [:show]
   before_action :select_user_application_from_params, only: [:new, :create, :destroy]
   before_action :raise_unless_visible_component, only: [:show]
@@ -32,10 +33,43 @@ class ListsController < ApplicationController
     redirect_to user_application_path(name: @application.name)
   end
 
+  def import_items
+    begin
+      @list = List.find_by!(name_format: list_params["list_name_format"])
+      content_type = list_params["list"]["uploaded_file"].content_type
+      path = list_params["list"]["uploaded_file"].tempfile.path
+      case content_type 
+      when "application/x-yaml"
+        items = YAML.load_file(path)["items"]
+        parse_items_from_hash(items)
+      when "application/json"
+        file = File.read(path)
+        items = JSON.parse(file)["items"]
+        parse_items_from_hash(items)
+      else
+        flash[:alert] = "Content type not recognized"
+        redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+      end
+    rescue => error
+      flash[:alert] = "Something went wrong. #{error}"
+      redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+    end
+  end
+
+  def import_succesfull
+    flash[:alert] = "Success!"
+    redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+  end
+
+  def parse_items_from_hash(items)
+    items.each { |item| Item.create!(list: @list, content: item) }
+    import_succesfull
+  end
+
   private
 
   def list_params
-    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, { list: [:name] })
+    params.permit(:user_username, :application_name, :list_name_format, :name_format, :authenticity_token, :commit, { list: [:name, :uploaded_file] })
   end
 
   def select_user_application_list_from_params
