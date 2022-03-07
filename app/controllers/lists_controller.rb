@@ -6,6 +6,7 @@ class ListsController < ApplicationController
   before_action :raise_unless_visible_component, only: [:show]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
 
+  
   def show
   end
 
@@ -47,8 +48,7 @@ class ListsController < ApplicationController
         items = JSON.parse(file)["items"]
         parse_items_from_hash(items)
       else
-        flash[:alert] = "Content type not recognized"
-        redirect_to user_application_list_path(name_format: list_params["list_name_format"])
+        raise StandardError.new("Content type not recognized")
       end
     rescue => error
       flash[:alert] = "Something went wrong. #{error}"
