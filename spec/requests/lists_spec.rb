@@ -189,4 +189,39 @@ RSpec.describe "Lists", type: :request do
       end
     end
   end
+
+  describe "POST /import_items" do
+    let(:user) { create(:user) }
+    let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
+    let(:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+
+    context "Normal user"do
+      before do
+        sign_in(user)
+      end
+
+      it "Should allow users to create items from an uploaded file" do
+        @file = fixture_file_upload('sentences.json').tap do |file|
+          file.content_type = 'application/json'
+        end
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        post user_application_list_import_path(user_username: user.username,
+                                               application_name: @app.name,
+                                               list_name_format: @list.name_format,
+                                               list: {uploaded_file: @file})
+        expect(response.status).to eq(302)
+      end
+
+
+      it "Should not allow users to create items from a file different to JSON or YAML" do
+        @file = fixture_file_upload('sentences.html')
+        @app = create(:application, user: user)
+        @list = create(:list, application: @app)
+        post "/#{user.username}/#{@app.name}/lists/#{@list.name_format}/import", params: {"list" => {uploaded_file: @file}}
+        expect(response.status).to eq(302)
+        expect(flash[:alert]).to eq("Something went wrong. Content type not recognized")
+      end
+    end
+  end
 end
