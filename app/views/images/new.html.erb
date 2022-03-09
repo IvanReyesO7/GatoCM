@@ -1,0 +1,6 @@
+<%= simple_form_for @image, url: user_application_images_path(user_username: @user.username, application_name: @application.name), html: { multipart: true }, method: :post do |f| %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit %>
+<% end %>
+
+<%# /:user_username/:application_name/images(.:format)	 %>
