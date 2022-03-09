@@ -1,6 +1,6 @@
 class Image < ApplicationRecord
   belongs_to :application
-
+  has_one_attached :photo
   before_create :generate_name_fomat
   after_create :create_component
 
