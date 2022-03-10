@@ -22,5 +22,4 @@ class Image < ApplicationRecord
       comp.save!
     end
   end
-
 end
