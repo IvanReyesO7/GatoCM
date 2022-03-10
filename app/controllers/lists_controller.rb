@@ -48,7 +48,7 @@ class ListsController < ApplicationController
         items = JSON.parse(file)["items"]
         parse_items_from_hash(items)
       else
-        raise StandardError.new("Content type not recognized")
+        raise StandardError.new("Content type not supported")
       end
     rescue => error
       flash[:alert] = "Something went wrong. #{error}"
