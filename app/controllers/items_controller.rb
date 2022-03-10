@@ -8,7 +8,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(
+    @item = Item.create!(
       content:   item_params[:item][:content],
       list:      @list
     )

@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
-
   before_action :select_user_application_image_from_params, only: [:show]
   before_action :raise_unless_visible_component, only: [:show]
+  before_action :select_user_application_from_params, only: [:new, :create]
 
   def show
   end
@@ -10,15 +10,32 @@ class ImagesController < ApplicationController
     @image = Image.new
   end
 
+  def create
+    p img_path = images_params[:image][:photo].tempfile.path
+    uploader = Cloudinary::Uploader.upload(img_path)
+    @image = Image.create!(
+                            title: images_params[:image][:title],
+                            application: @application,
+                             url: uploader["secure_url"]
+                          )
+
+    redirect_to user_application_path(name: @application.name)
+  end
+
   private
 
   def images_params
-    params.permit(:user_username, :application_name, :name_format)
+    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, image: [:photo, :title])
   end
 
   def select_user_application_image_from_params
     @user = User.find_by!(username: images_params[:user_username])
     @application = Application.find_by!(user: @user, name: images_params[:application_name])
     @component = @image = Image.find_by!(application: @application ,name_format: images_params[:name_format])
+  end
+
+  def select_user_application_from_params
+    @user = User.find_by!(username: images_params[:user_username])
+    @application = Application.find_by!(user: @user, name: images_params[:application_name])
   end
 end
