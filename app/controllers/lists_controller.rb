@@ -27,7 +27,6 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list = List.find_by!(name_format: list_params[:name_format])
     @list.items.destroy_all
     @list.destroy!
 
