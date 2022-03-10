@@ -1,3 +1,4 @@
 <h1><%= @image.title %></h1>
 <p><%= @image.url %></p>
+<%= image_tag @image.url, style: "max-width: 450px" %>
 <%= button_to "Back", user_application_path(name: @application.name), method: :get %>

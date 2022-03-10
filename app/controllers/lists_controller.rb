@@ -1,8 +1,8 @@
 require 'json'
 
 class ListsController < ApplicationController
-  before_action :select_user_application_list_from_params, only: [:show]
-  before_action :select_user_application_from_params, only: [:new, :create, :destroy]
+  before_action :select_user_application_list_from_params, only: [:show, :destroy]
+  before_action :select_user_application_from_params, only: [:new, :create]
   before_action :raise_unless_visible_component, only: [:show]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
 
@@ -27,7 +27,6 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list = List.find_by!(name_format: list_params[:name_format])
     @list.items.destroy_all
     @list.destroy!
 
@@ -48,7 +47,7 @@ class ListsController < ApplicationController
         items = JSON.parse(file)["items"]
         parse_items_from_hash(items)
       else
-        raise StandardError.new("Content type not recognized")
+        raise StandardError.new("Content type not supported")
       end
     rescue => error
       flash[:alert] = "Something went wrong. #{error}"
