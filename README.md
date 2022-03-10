@@ -18,7 +18,7 @@ Before making a Pull Request use `git status` or `git diff` to check that you ar
 
 Thank you so much for contributing to this project 🙏🏽.
 
-## For occasional developers
+## For occasional contributors
 
 You can contribute to this project without having to install all the dependencies in your computer (Gems and Yarn packages),
 you can set a docker container that will isolate the development enviornment of this application,
