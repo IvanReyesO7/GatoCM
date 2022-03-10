@@ -220,7 +220,7 @@ RSpec.describe "Lists", type: :request do
         @list = create(:list, application: @app)
         post "/#{user.username}/#{@app.name}/lists/#{@list.name_format}/import", params: {"list" => {uploaded_file: @file}}
         expect(response.status).to eq(302)
-        expect(flash[:alert]).to eq("Something went wrong. Content type not recognized")
+        expect(flash[:alert]).to eq("Something went wrong. Content type not supported")
       end
     end
   end

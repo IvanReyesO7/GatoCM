@@ -1,8 +1,8 @@
 require 'json'
 
 class ListsController < ApplicationController
-  before_action :select_user_application_list_from_params, only: [:show]
-  before_action :select_user_application_from_params, only: [:new, :create, :destroy]
+  before_action :select_user_application_list_from_params, only: [:show, :destroy]
+  before_action :select_user_application_from_params, only: [:new, :create]
   before_action :raise_unless_visible_component, only: [:show]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
 
