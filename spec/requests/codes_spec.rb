@@ -158,4 +158,47 @@ RSpec.describe "Codes", type: :request do
       end
     end
   end
+
+  describe "DELETE/ " do
+    let(:user) { create(:user) }
+    let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
+    let(:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+
+
+    context "Normal user" do
+
+      before do
+        sign_in(user)
+      end
+
+      it "Should allow you to delete a piece of code in your own app" do
+        @app = create(:application, user: user)
+        @code = create(:code, application: @app)
+        delete "/#{user.username}/#{@app.name}/codes/#{@code.name_format}"
+        expect(response.status).to eq(302)    
+      end
+
+      it "Should not allow users to delete other's piece of code" do
+        @app = create(:application, user: user_1)
+        @code = create(:code, application: @app, name_format: 'holis')
+        expect do
+          delete "/#{user_1.username}/#{@app.name}/codes/#{@code.name_format}"
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "Admin user" do
+
+      before do
+        sign_in(admin)
+      end
+
+      it "Should allow admin users to delete user's piece of code" do
+        @app = create(:application, user: user_1)
+        @code = create(:code, application: @app)
+        delete "/#{user_1.username}/#{@app.name}/codes/#{@code.name_format}"
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end

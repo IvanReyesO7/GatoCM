@@ -1,6 +1,6 @@
 class CodesController < ApplicationController
 
-  before_action :select_user_application_code_from_params, only: [:show]
+  before_action :select_user_application_code_from_params, only: [:show, :destroy]
   before_action :raise_unless_visible_component, only: [:show]
   before_action :select_user_application_from_params, only: [:new, :create]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
@@ -26,6 +26,12 @@ class CodesController < ApplicationController
       flash[:alert] = "Something went wrong. #{error}"
       redirect_to user_application_path(name: @application.name)
     end
+  end
+
+  def destroy
+    @code.destroy!
+
+    redirect_to user_application_path(name: @application.name)
   end
 
   private
