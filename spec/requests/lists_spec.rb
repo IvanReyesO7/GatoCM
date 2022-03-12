@@ -145,7 +145,7 @@ RSpec.describe "Lists", type: :request do
         sign_in(user)
       end
 
-      it "Should allow you to delete the lists in your own app" do
+      it "Should allow you to delete a list in your own app" do
         @app = create(:application, user: user)
         @list = create(:list, application: @app)
         delete "/#{user.username}/#{@app.name}/lists/#{@list.name_format}"

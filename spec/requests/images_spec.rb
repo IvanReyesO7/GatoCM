@@ -116,7 +116,7 @@ RSpec.describe "Images", type: :request do
       it "Should not allow you to create images in other users apps" do
         @app = create(:application, user: user_2)
         expect do
-          post "/#{user_2.username}/#{@app.name}/lists/",
+          post "/#{user_2.username}/#{@app.name}/images/",
           params: {
             application_name: @app.name,
             user_username:    user_2.username,
@@ -172,6 +172,49 @@ RSpec.describe "Images", type: :request do
         expect(flash[:alert]).to eq("Success!")
         expect(response.status).to eq(302)
         CloudinaryHelpers.clean(@image)
+      end
+    end
+  end
+
+  describe "DELETE/ " do
+    let(:user) { create(:user) }
+    let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
+    let(:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+
+
+    context "Normal user" do
+
+      before do
+        sign_in(user)
+      end
+
+      it "Should allow you to delete an image in your own app" do
+        @app = create(:application, user: user)
+        @image = create(:image, application: @app)
+        delete "/#{user.username}/#{@app.name}/images/#{@image.name_format}"
+        expect(response.status).to eq(302)
+      end
+
+      it "Should not allow users to delete other's images" do
+        @app = create(:application, user: user_1)
+        @image = create(:image, application: @app, title: 'title')
+        expect do
+          delete "/#{user_1.username}/#{@app.name}/images/#{@image.name_format}"
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "Admin user" do
+
+      before do
+        sign_in(admin)
+      end
+
+      it "Should allow admin users to delete user's images" do
+        @app = create(:application, user: user_1)
+        @image = create(:image, application: @app)
+        delete "/#{user_1.username}/#{@app.name}/images/#{@image.name_format}"
+        expect(response.status).to eq(302)
       end
     end
   end
