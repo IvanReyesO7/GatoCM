@@ -59,9 +59,8 @@ RSpec.describe "Lists", type: :request do
         expect(response).to have_http_status(200)
       end
 
-      it "Should not show you list form in other users lists" do
+      it "Should not show you list form in other users app" do
         app_2 = create(:application, name: "app_2", user: user_2)
-        list_2 = create(:list, name: "list 2", application: app_2)
         expect do 
           get "/#{user_2.username}/#{app_2.name}/lists/new"
         end.to raise_error(ActiveRecord::RecordNotFound)
@@ -75,7 +74,6 @@ RSpec.describe "Lists", type: :request do
 
       it "Should allow user admin to see list form in other user apps" do
         app_2 = create(:application, name: "app_2", user: user_2)
-        list_2 = create(:list, name: "list 2", application: app_2)
         get "/#{user_2.username}/#{app_2.name}/lists/new"
         expect(response).to have_http_status(200)
       end
@@ -147,7 +145,7 @@ RSpec.describe "Lists", type: :request do
         sign_in(user)
       end
 
-      it "Should allow you to delete the lists in your own app" do
+      it "Should allow you to delete a list in your own app" do
         @app = create(:application, user: user)
         @list = create(:list, application: @app)
         delete "/#{user.username}/#{@app.name}/lists/#{@list.name_format}"
@@ -210,6 +208,7 @@ RSpec.describe "Lists", type: :request do
                                                application_name: @app.name,
                                                list_name_format: @list.name_format,
                                                list: {uploaded_file: @file})
+        expect(flash[:alert]).to eq("Success!")
         expect(response.status).to eq(302)
       end
 

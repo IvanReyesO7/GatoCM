@@ -1,6 +1,5 @@
 class Image < ApplicationRecord
   belongs_to :application
-  has_one_attached :photo
   before_create :generate_name_fomat
   after_create :create_component
   
@@ -8,6 +7,7 @@ class Image < ApplicationRecord
                                                   case_sensitive: true,
                                                   message: "You already have an image in this app with that title."}
   validates :url, presence: true
+  validates :public_id, presence: true
 
   def generate_name_fomat
     self.name_format = self.title.downcase.gsub(/[\s|\.]/,"_")

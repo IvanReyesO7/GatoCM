@@ -3,6 +3,7 @@ class ImagesController < ApplicationController
   before_action :select_user_application_image_from_params, only: [:show, :destroy]
   before_action :raise_unless_visible_component, only: [:show]
   before_action :select_user_application_from_params, only: [:new, :create]
+  before_action :raise_unless_visible, only: [:create, :new, :destroy]
 
   SUPPORTED_FORMATS = ["image/png", "image/jpeg"]
 
@@ -21,7 +22,8 @@ class ImagesController < ApplicationController
         uploader = Cloudinary::Uploader.upload(img_path)
         @image = Image.create!(title: images_params[:image][:title],
                               application: @application,
-                              url: uploader["secure_url"])
+                              url: uploader["secure_url"],
+                              public_id: uploader["public_id"])
         flash[:alert] = "Success!"
         redirect_to user_application_path(name: @application.name)
       else
