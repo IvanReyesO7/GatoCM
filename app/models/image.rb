@@ -8,6 +8,7 @@ class Image < ApplicationRecord
                                                   case_sensitive: true,
                                                   message: "You already have an image in this app with that title."}
   validates :url, presence: true
+  validates :public_id, presence: true
 
   def generate_name_fomat
     self.name_format = self.title.downcase.gsub(/[\s|\.]/,"_")
