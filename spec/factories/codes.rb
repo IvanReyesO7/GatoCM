@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :code do
     title { "Example code" }
     content { "<p>This is some random code</p>" }
+    type { "html" }
     application { nil }
 
     trait :no_title do
