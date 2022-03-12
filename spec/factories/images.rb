@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :image do
-    url { "https://example.com" }
     application { nil }
     title {"random title"}
+    url { "https://example.com" }
+    public_id { "kattongoukakyuunojutsu" }
 
     trait :no_title do
       title { nil }
