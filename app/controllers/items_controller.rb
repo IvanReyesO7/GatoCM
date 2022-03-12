@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
       content:   item_params[:item][:content],
       list:      @list
     )
-    p @item.valid?
     if @item.save
       redirect_to user_application_list_path(name_format: @list.name_format)
     else

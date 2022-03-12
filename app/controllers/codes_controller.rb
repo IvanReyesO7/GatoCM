@@ -15,7 +15,7 @@ class CodesController < ApplicationController
   def create
     begin
       file = codes_params["code"]["file"]
-      p file_decorated = FileDecorator.new(file)
+      file_decorated = FileDecorator.new(file)
       @code = Code.create!( title: file_decorated.name,
                             content: file_decorated.content,
                             file_type: file_decorated.type,

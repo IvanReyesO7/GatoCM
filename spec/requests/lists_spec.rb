@@ -202,7 +202,6 @@ RSpec.describe "Lists", type: :request do
         @file = fixture_file_upload('sentences.json').tap do |file|
           file.content_type = 'application/json'
         end
-        p @file
         @app = create(:application, user: user)
         @list = create(:list, application: @app)
         post user_application_list_import_path(user_username: user.username,
