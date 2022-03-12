@@ -44,6 +44,7 @@ usernames.each do |username|
       Image.new.tap do |img|
         img.title = Faker::Sports::Football.player
         img.url = "https://#{Faker::Internet.domain_name}"
+        img.public_id = "#{Random.new_seed}"
         img.application = app
         img.save!
         puts "-- Image: #{img.title} created"
