@@ -8,6 +8,7 @@ class Code < ApplicationRecord
                                                   case_sensitive: true,
                                                   message: "You already have a piece of code in this app with that title."}
   validates :content, presence: true
+  validates :file_type, presence: true
 
   def generate_name_fomat
     self.name_format = self.title.downcase.gsub(/[\s|\.]/,"_")
