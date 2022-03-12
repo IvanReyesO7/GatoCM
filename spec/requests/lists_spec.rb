@@ -208,6 +208,7 @@ RSpec.describe "Lists", type: :request do
                                                application_name: @app.name,
                                                list_name_format: @list.name_format,
                                                list: {uploaded_file: @file})
+        expect(flash[:alert]).to eq("Success!")
         expect(response.status).to eq(302)
       end
 
