@@ -202,13 +202,13 @@ RSpec.describe "Lists", type: :request do
         @file = fixture_file_upload('sentences.json').tap do |file|
           file.content_type = 'application/json'
         end
+        p @file
         @app = create(:application, user: user)
         @list = create(:list, application: @app)
         post user_application_list_import_path(user_username: user.username,
                                                application_name: @app.name,
                                                list_name_format: @list.name_format,
                                                list: {uploaded_file: @file})
-        expect(flash[:alert]).to eq("Success!")
         expect(response.status).to eq(302)
       end
 
