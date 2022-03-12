@@ -43,7 +43,7 @@ usernames.each do |username|
       # Create Image
       Image.new.tap do |img|
         img.title = Faker::Sports::Football.player
-        img.url = "https://#{Faker::Internet.domain_name}"
+        img.url = Faker::Avatar.image
         img.public_id = "#{Random.new_seed}"
         img.application = app
         img.save!
