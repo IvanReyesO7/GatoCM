@@ -1,13 +1,13 @@
 class FileDecorator
   attr_reader :name, :content, :type
-  
+
   def initialize(uploaded_file)
-    @path = uploaded_file.tempfile.path
+    path = uploaded_file.tempfile.path
+    file = File.open(path)
     @name = uploaded_file.original_filename
     @content_type = uploaded_file.content_type
-    @file = File.open(@path)
     @type = detect_type
-    @content = @file.read
+    @content = file.read
   end
 
   def detect_type

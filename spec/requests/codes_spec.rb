@@ -80,4 +80,125 @@ RSpec.describe "Codes", type: :request do
       end
     end
   end
+
+  describe "POST /create" do
+    let (:user) { create(:user) }
+    let (:user_2) { create(:user, username: "user_2", email: "user_2@me.com") }
+    let (:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+
+    before do
+      @file = fixture_file_upload('sentences.html').tap do |file|
+        file.content_type = 'text/html'
+      end
+    end
+
+    context "Normal users" do
+
+      before do
+        sign_in(user)
+      end
+
+      it "Should allow you to create a piece of code in your own app" do
+        @app = create(:application, user: user)
+        post "/#{user.username}/#{@app.name}/codes/",
+        params: {
+          application_name: @app.name,
+          user_username:    user.username,
+          code:             { file: @file }
+        }
+        @code = Code.find_by!(application: @app, title: @file.original_filename, file_type: 'html')
+        expect(@app.codes.last).to eq(@code)
+        expect(response.status).to eq(302)
+        expect(flash[:alert]).to eq("Success!")
+      end
+
+      it "Should not allow you to create a piece of code in other users apps" do
+        @app = create(:application, user: user_2)
+        expect do
+          post "/#{user_2.username}/#{@app.name}/codes/",
+          params: {
+            application_name: @app.name,
+            user_username:    user_2.username,
+            code:             { file: @file }
+          }
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+
+      it "Should now allow you to upload a file type different to the supported types" do
+        @file_two = fixture_file_upload('drake.jpeg').tap { |file| file.content_type = 'image/jpeg' }
+        @app = create(:application, user: user)
+        post "/#{user.username}/#{@app.name}/codes/",
+        params: {
+          application_name: @app.name,
+          user_username:    user.username,
+          code:             { file: @file_two }
+        }
+        expect(response.status).to eq(302)
+        expect(flash[:alert]).to eq("Something went wrong. File type not supported")
+      end
+    end
+
+    context "Admin users" do
+      before do
+        sign_in(admin)
+      end
+
+      it "Should allow admins to create a piece of code in other users apps" do
+        @app = create(:application, user: user)
+        post "/#{user.username}/#{@app.name}/codes/",
+        params: {
+          application_name: @app.name,
+          user_username:    user.username,
+          code:             { file: @file }
+        }
+        @code = Code.find_by!(application: @app, title: @file.original_filename, file_type: 'html')
+        expect(@app.codes.last).to eq(@code)
+        expect(response.status).to eq(302)
+        expect(flash[:alert]).to eq("Success!")
+      end
+    end
+  end
+
+  describe "DELETE/ " do
+    let(:user) { create(:user) }
+    let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
+    let(:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+
+
+    context "Normal user" do
+
+      before do
+        sign_in(user)
+      end
+
+      it "Should allow you to delete a piece of code in your own app" do
+        @app = create(:application, user: user)
+        @code = create(:code, application: @app)
+        delete "/#{user.username}/#{@app.name}/codes/#{@code.name_format}"
+        expect(response.status).to eq(302)    
+      end
+
+      it "Should not allow users to delete other's piece of code" do
+        @app = create(:application, user: user_1)
+        @code = create(:code, application: @app, name_format: 'holis')
+        expect do
+          delete "/#{user_1.username}/#{@app.name}/codes/#{@code.name_format}"
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context "Admin user" do
+
+      before do
+        sign_in(admin)
+      end
+
+      it "Should allow admin users to delete user's piece of code" do
+        @app = create(:application, user: user_1)
+        @code = create(:code, application: @app)
+        delete "/#{user_1.username}/#{@app.name}/codes/#{@code.name_format}"
+        expect(response.status).to eq(302)
+      end
+    end
+  end
 end
