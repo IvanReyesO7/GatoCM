@@ -1,4 +1,6 @@
 class FileDecorator
+  attr_reader :name, :content, :type
+  
   def initialize(uploaded_file)
     @path = uploaded_file.tempfile.path
     @name = uploaded_file.original_filename

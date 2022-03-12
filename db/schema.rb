@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_142050) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name_format"
-    t.string "type"
+    t.string "file_type"
     t.index ["application_id"], name: "index_codes_on_application_id"
   end
 

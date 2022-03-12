@@ -12,10 +12,26 @@ class CodesController < ApplicationController
     @code = Code.new
   end
 
+  def create
+    begin
+      file = codes_params["code"]["file"]
+      p file_decorated = FileDecorator.new(file)
+      @code = Code.create!( title: file_decorated.name,
+                            content: file_decorated.content,
+                            file_type: file_decorated.type,
+                            application: @application )
+      flash[:alert] = "Success!"
+      redirect_to user_application_path(name: @application.name)
+    rescue => error
+      flash[:alert] = "Something went wrong. #{error}"
+      redirect_to user_application_path(name: @application.name)
+    end
+  end
+
   private
 
   def codes_params
-    params.permit(:user_username, :application_name, :name_format)
+    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, code: [:file, :title])
   end
 
   def select_user_application_code_from_params

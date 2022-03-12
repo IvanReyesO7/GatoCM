@@ -21,9 +21,9 @@ class ImagesController < ApplicationController
         img_path = images_params[:image][:photo].tempfile.path
         uploader = Cloudinary::Uploader.upload(img_path)
         @image = Image.create!(title: images_params[:image][:title],
-                              application: @application,
-                              url: uploader["secure_url"],
-                              public_id: uploader["public_id"])
+                               application: @application,
+                               url: uploader["secure_url"],
+                               public_id: uploader["public_id"])
         flash[:alert] = "Success!"
         redirect_to user_application_path(name: @application.name)
       else
