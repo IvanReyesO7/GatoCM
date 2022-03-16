@@ -1,5 +1,5 @@
 class FileDecorator
-  attr_reader :name, :content, :type
+  attr_reader :name, :content, :type, :extension
 
   def initialize(uploaded_file)
     path = uploaded_file.tempfile.path
@@ -8,6 +8,7 @@ class FileDecorator
     @content_type = uploaded_file.content_type
     @type = detect_type
     @content = file.read
+    @extension = generate_extension(@type)
   end
 
   def detect_type
@@ -25,5 +26,20 @@ class FileDecorator
     else
       raise StandardError.new("File type not supported")
     end 
+  end
+
+  def generate_extension(type)
+    case type
+    when 'ruby'
+      return '.rb'
+    when 'javascript'
+      return '.js'
+    when 'python'
+      return '.py'
+    when 'html'
+      return '.html'
+    when 'css'
+      return 'css'
+    end
   end
 end
