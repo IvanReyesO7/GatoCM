@@ -19,6 +19,7 @@ class CodesController < ApplicationController
       @code = Code.create!( title: file_decorated.name,
                             content: file_decorated.content,
                             file_type: file_decorated.type,
+                            extension: file_decorated.extension,
                             application: @application )
       flash[:alert] = "Success!"
       redirect_to user_application_path(name: @application.name)

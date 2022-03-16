@@ -1,4 +1,32 @@
-<h1><%= @code.title %></h1>
-<p><%= @code.content %></p>
-<%= button_to "Back", user_application_path(name: @application.name), method: :get %>
-<button class='download'>Download</button>
+<%= content_tag :div, class: "code-data", data: {code: @code} do %>
+  <h1><%= @code.title %></h1>
+  <p><%= @code.content %></p>
+  <%= button_to "Back", user_application_path(name: @application.name), method: :get %>
+  <button class='download-btn'>Download</button>
+<% end %>
+
+<%# To do: organize the javascript in the app/javascript directory %>
+
+<script>
+const code = document.querySelector('.code-data');
+const downloadBtn = document.querySelector('.download-btn');
+function downloadFile(e) {
+  const codeObject = JSON.parse(code.dataset['code']);
+  const pom = document.createElement('a');
+  // Create the file
+  const content = codeObject['content'];
+  
+  pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+  pom.setAttribute('download', `${codeObject['title']}`);
+
+  if (document.createEvent) {
+    const event = document.createEvent('MouseEvents');
+    event.initEvent('click', true, true);
+    pom.dispatchEvent(event);
+  }
+  else {
+    pom.click();
+  }
+}
+downloadBtn.addEventListener('click', downloadFile);
+</script>

@@ -27,6 +27,6 @@
     <li><%= link_to code.title, user_application_code_path(application_name: @application.name, name_format: code.name_format) %></li>
   </ul>
   <% end %>
-  <%= button_to "Create code", new_user_application_code_url(application_name: @application.name), method: :get %>
 <% end %>
+<%= button_to "Create code", new_user_application_code_url(application_name: @application.name), method: :get %>
 <%= button_to "Back", user_applications_index_path, method: :get %>
