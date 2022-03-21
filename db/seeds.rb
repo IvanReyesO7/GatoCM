@@ -54,6 +54,7 @@ usernames.each do |username|
         code.title = Faker::Games::Minecraft.mob
         code.content = "<h1>This is a piece of code for #{code.title}</h1>"
         code.application = app
+        code.file_type = 'html'
         code.save!
         puts "-- Code: #{code.title} created"
       end
