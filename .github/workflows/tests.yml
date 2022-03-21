@@ -38,13 +38,5 @@ jobs:
         with:
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
-
-      - name: bundle install
-        run: bundle install
-      - name: Prepare DB
-        run: |
-          cp config/database.github.yml config/database.yml
-          bundle exec rails db:create db:migrate
-          bundle exec rails webpacker:compile
       - name: Run rspec tests
         run: bundle exec rspec
