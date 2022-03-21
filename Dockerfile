@@ -10,14 +10,14 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 RUN apt install -y nodejs
 RUN npm install --global yarn
 
-RUN mkdir /api_console
-WORKDIR /api_console
+RUN mkdir /api
+WORKDIR /api
 
-COPY Gemfile /api_console/Gemfile
-COPY Gemfile.lock /api_console/Gemfile.lock
+COPY Gemfile /api/Gemfile
+COPY Gemfile.lock /api/Gemfile.lock
 
 RUN gem install bundler:2.2.26
 RUN bundle install
 RUN yarn install
 
-COPY . /api_console
+COPY . /api
