@@ -48,7 +48,7 @@ class ImagesController < ApplicationController
   def download
     url = @image.url
     data = open(url).read
-    send_data data, :disposition => 'attachment', :filename=>"#{@image.name_format}.jpg"
+    send_data data, :disposition => 'attachment', :filename=>"#{@image.name_format}.#{@image.extension}"
   end
 
   private
