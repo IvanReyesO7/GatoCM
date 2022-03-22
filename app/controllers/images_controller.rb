@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
   before_action :select_user_application_from_params, only: [:new, :create]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
 
-  SUPPORTED_FORMATS = ["image/png", "image/jpeg"]
+  SUPPORTED_FORMATS = ["image/png", "image/jpeg", "image/jpg"]
 
   def show
   end
@@ -18,10 +18,10 @@ class ImagesController < ApplicationController
 
   def create
     begin
-      content_type = images_params[:image][:photo].content_type
-      if  SUPPORTED_FORMATS.include?(content_type)
-        img_path = images_params[:image][:photo].tempfile.path
-        uploader = Cloudinary::Uploader.upload(img_path)
+      file = images_params[:image][:photo]
+      if  SUPPORTED_FORMATS.include?(file.content_type)
+        image_decorated = ImageDecorator.new(file)
+        uploader = image_decorated.upload_to_cloudinary
         @image = Image.create!(title: images_params[:image][:title],
                                application: @application,
                                url: uploader["secure_url"],
