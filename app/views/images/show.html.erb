@@ -1,4 +1,6 @@
 <h1><%= @image.title %></h1>
 <p><%= @image.url %></p>
 <%= image_tag @image.url, style: "max-width: 450px" %>
+<%= link_to "Download", user_application_image_download_path(image_name_format: @image.name_format, name_format: @image.name_format), method: :post %>
+
 <%= button_to "Back", user_application_path(name: @application.name), method: :get %>
