@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
 
-  before_action :select_user_application_image_from_params, only: [:show, :destroy, :download_image]
+  before_action :select_user_application_image_from_params, only: [:show, :destroy, :download]
   before_action :raise_unless_visible_component, only: [:show]
   before_action :select_user_application_from_params, only: [:new, :create]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
@@ -41,7 +41,7 @@ class ImagesController < ApplicationController
     redirect_to user_application_path(name: @application.name)
   end
 
-  def download_image
+  def download
     raise
   end
 

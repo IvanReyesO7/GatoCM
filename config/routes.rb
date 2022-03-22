@@ -9,7 +9,9 @@ Rails.application.routes.draw do
         post "/import" => "lists#import_items"
         resources :items 
       end
-      resources :images, param: :name_format, path: '/images/', only: [:show, :new, :create, :edit, :update, :destroy]
+      resources :images, param: :name_format, path: '/images/', only: [:show, :new, :create, :edit, :update, :destroy] do
+        post "/download" => "images#download"
+      end
       resources :codes, param: :name_format, path: '/codes/', only: [:show, :new, :create, :edit, :update, :destroy]
     end
   end
