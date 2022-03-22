@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class ImagesController < ApplicationController
 
   before_action :select_user_application_image_from_params, only: [:show, :destroy, :download]
@@ -42,7 +44,9 @@ class ImagesController < ApplicationController
   end
 
   def download
-    raise
+    url = @image.url
+    data = open(url).read
+    send_data data, :disposition => 'attachment', :filename=>"#{@image.name_format}.jpg"
   end
 
   private
