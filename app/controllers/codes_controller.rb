@@ -40,9 +40,24 @@ class CodesController < ApplicationController
     @code = Code.find_by!(title: "#{codes_params[:title]}.#{codes_params[:format]}", 
                           file_type: codes_params[:type],
                           application: @application)
-                          
+    case @code.file_type
+    when 'javascript'
+      render_javascript
+    when 'css'
+      render_css
+    end
+
+  end
+
+  def render_javascript
     respond_to do |format|
       format.js { render partial: "codes/shared/file" }
+    end
+  end
+
+  def render_css
+    respond_to do |format|
+      format.css { render partial: "codes/shared/file" }
     end
   end
 
