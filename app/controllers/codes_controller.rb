@@ -45,8 +45,9 @@ class CodesController < ApplicationController
       render_javascript
     when 'css'
       render_css
+    when 'html'
+      render_html
     end
-
   end
 
   def render_javascript
@@ -58,6 +59,12 @@ class CodesController < ApplicationController
   def render_css
     respond_to do |format|
       format.css { render partial: "codes/shared/file" }
+    end
+  end
+
+  def render_html
+    respond_to do |format|
+      format.html { render partial: "codes/shared/file" }
     end
   end
 
