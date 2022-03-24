@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         post "/download" => "images#download"
       end
       resources :codes, param: :name_format, path: '/codes/', only: [:show, :new, :create, :edit, :update, :destroy]
+      get "/codes/:type/:title" => "codes#render_raw"
     end
   end
 
