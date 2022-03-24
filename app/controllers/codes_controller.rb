@@ -37,7 +37,10 @@ class CodesController < ApplicationController
   end
 
   def render_raw
-    @code = Code.find_by!(title: "#{codes_params[:title]}.#{codes_params[:format]}", application: @application)
+    @code = Code.find_by!(title: "#{codes_params[:title]}.#{codes_params[:format]}", 
+                          file_type: codes_params[:type],
+                          application: @application)
+                          
     respond_to do |format|
       format.js { render partial: "codes/shared/file" }
     end
