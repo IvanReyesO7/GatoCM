@@ -2,8 +2,9 @@ class CodesController < ApplicationController
 
   before_action :select_user_application_code_from_params, only: [:show, :destroy]
   before_action :raise_unless_visible_component, only: [:show]
-  before_action :select_user_application_from_params, only: [:new, :create]
+  before_action :select_user_application_from_params, only: [:new, :create, :render_raw]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
+  protect_from_forgery except: :render_raw
 
   def show
   end
@@ -35,10 +36,19 @@ class CodesController < ApplicationController
     redirect_to user_application_path(name: @application.name)
   end
 
+  def render_raw
+    @code = Code.find_by!(title: "#{codes_params[:title]}.#{codes_params[:format]}", application: @application)
+    respond_to do |format|
+      format.js { render partial: "codes/shared/file" }
+    end
+  end
+
   private
 
   def codes_params
-    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, code: [:file, :title])
+    params.permit(:user_username, :application_name, :name_format, 
+                  :authenticity_token, :commit, :type, :title,
+                  :format, code: [:file, :title])
   end
 
   def select_user_application_code_from_params
