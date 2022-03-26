@@ -41,7 +41,7 @@ If you are not using OSX, you'll need to figure out the best to install
 You can build the base GatoCM image by running the following command:
 
 ```
-docker-compose build GatoCM
+docker-compose build gatocm
 ```
 
 Anytime you add a RubyGem to Gemfile or a node package to package.json, you
@@ -54,33 +54,33 @@ To bring up the app for the first time you need to first initialize the database
 You can do this by running the following command **warning resets db**:
 
 ```
-docker-compose run GatoCM bundle exec rake db:reset db:migrate 
+docker-compose run gatocm bundle exec rake db:reset db:migrate 
 ```
 
 If you get the error "Your Yarn packages are out of date!",
 run the following command before trying the command above again:
 
 ```
-docker-compose run GatoCM bundle exec yarn install --check-files
+docker-compose run gatocm bundle exec yarn install --check-files
 ```
 
 ## Updating migrations
 
 ```
-docker-compose run GatoCM bundle exec rake db:migrate
+docker-compose run gatocm bundle exec rake db:migrate
 ```
 
 ## Populating the db
 ⚠️ This will reset your database
 
 ```
-docker-compose run GatoCM bundle exec rake db:drop db:create db:migrate db:seed
+docker-compose run gatocm bundle exec rake db:drop db:create db:migrate db:seed
 ```
 
 ## Launching the rails console
 
 ```
-docker-compose run GatoCM rails console
+docker-compose run gatocm rails console
 ```
 
 ## Bringing the app up
@@ -110,6 +110,6 @@ Or press CTRL-C in the terminal where it is running.
 To run the rspecs, run:
 
 ```
-docker-compose run GatoCM bundle exec rspec  
+docker-compose run gatocm bundle exec rspec
 ```
 
