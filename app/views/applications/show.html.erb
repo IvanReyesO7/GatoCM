@@ -9,8 +9,8 @@
     <%# <li><%= link_to "Destroy", user_application_list_path(application_name: @application.name, name_format: list.name_format), method: :delete %>
   </ul>
   <% end %>
-  <%= button_to "Create list", new_user_application_list_url(application_name: @application.name), method: :get %>
 <% end %>
+  <%= button_to "Create list", new_user_application_list_url(application_name: @application.name), method: :get %>
 <% if @images && !@images.empty? %>
   <h2>Images</h2>
   <% @images.each do |image| %>
@@ -18,8 +18,8 @@
     <li><%= link_to image.title, user_application_image_path(application_name: @application.name, name_format: image.name_format) %></li>
   </ul>
   <% end %>
-  <%= button_to "Create image", new_user_application_image_url(application_name: @application.name), method: :get %>
 <% end %>
+  <%= button_to "Create image", new_user_application_image_url(application_name: @application.name), method: :get %>
 <% if @codes && !@codes.empty? %>
   <h2>Code</h2>
   <% @codes.each do |code| %>
