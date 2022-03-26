@@ -19,10 +19,12 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      scope "/:username/:application_name/lists" do
-        get "/" => "lists#all"
-        get "/:list_name_format" => "lists#items"
-        get "/:list_name_format/random" => "lists#random"
+      scope "/:username/:application_name/" do
+        scope "lists" do
+          get "/" => "lists#all"
+          get "/:list_name_format" => "lists#items"
+          get "/:list_name_format/random" => "lists#random"
+        end
       end
     end
   end
