@@ -25,6 +25,9 @@ Rails.application.routes.draw do
           get "/:list_name_format" => "lists#items"
           get "/:list_name_format/random" => "lists#random"
         end
+        scope "codes" do
+          get "/:type/:title" => "codes#render_raw"
+        end
       end
     end
   end
