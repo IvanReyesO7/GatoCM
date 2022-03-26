@@ -1,5 +1,4 @@
 <%= simple_form_for @code, url: user_application_codes_path(user_username: @user.username, application_name: @application.name), method: :post do |f| %>
-  <%= f.input :title %>
   <%= f.input :file, as: :file %>
   <%= f.submit %>
 <% end %>
