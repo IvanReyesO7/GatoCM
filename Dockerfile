@@ -10,14 +10,14 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 RUN apt install -y nodejs
 RUN npm install --global yarn
 
-RUN mkdir /api
-WORKDIR /api
+RUN mkdir /gatocm
+WORKDIR /gatocm
 
-COPY Gemfile /api/Gemfile
-COPY Gemfile.lock /api/Gemfile.lock
+COPY Gemfile /gatocm/Gemfile
+COPY Gemfile.lock /gatocm/Gemfile.lock
 
 RUN gem install bundler:2.2.26
 RUN bundle install
 RUN yarn install
 
-COPY . /api
+COPY . /gatocm
