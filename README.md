@@ -1,5 +1,5 @@
-## Api Console Manager
-This a small personal project, the idea is to create a centralized and easy to visualize api console manager.
+## GatoCM
+This a small personal project, the idea is to create a centralized and easy to visualize a content manager dashboard.
 Something similar to a CMS, but with more flexible endpoints and the ability to create objects through the terminal with no need to use the UI.
 
 ## How to contribute
@@ -38,10 +38,10 @@ If you are not using OSX, you'll need to figure out the best to install
 
 ## Building the base rails image
 
-You can build the base api image by running the following command:
+You can build the base GatoCM image by running the following command:
 
 ```
-docker-compose build api
+docker-compose build GatoCM
 ```
 
 Anytime you add a RubyGem to Gemfile or a node package to package.json, you
@@ -54,33 +54,33 @@ To bring up the app for the first time you need to first initialize the database
 You can do this by running the following command **warning resets db**:
 
 ```
-docker-compose run api bundle exec rake db:reset db:migrate 
+docker-compose run GatoCM bundle exec rake db:reset db:migrate 
 ```
 
 If you get the error "Your Yarn packages are out of date!",
 run the following command before trying the command above again:
 
 ```
-docker-compose run api bundle exec yarn install --check-files
+docker-compose run GatoCM bundle exec yarn install --check-files
 ```
 
 ## Updating migrations
 
 ```
-docker-compose run api bundle exec rake db:migrate
+docker-compose run GatoCM bundle exec rake db:migrate
 ```
 
 ## Populating the db
 ⚠️ This will reset your database
 
 ```
-docker-compose run api bundle exec rake db:drop db:create db:migrate db:seed
+docker-compose run GatoCM bundle exec rake db:drop db:create db:migrate db:seed
 ```
 
 ## Launching the rails console
 
 ```
-docker-compose run api rails console
+docker-compose run GatoCM rails console
 ```
 
 ## Bringing the app up
@@ -110,6 +110,6 @@ Or press CTRL-C in the terminal where it is running.
 To run the rspecs, run:
 
 ```
-docker-compose run api bundle exec rspec  
+docker-compose run GatoCM bundle exec rspec  
 ```
 
