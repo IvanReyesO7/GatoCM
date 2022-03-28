@@ -1,0 +1,24 @@
+@import 'components/global_variables';
+
+.primary-btn {
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+
+.secondary-btn{
+  text-decoration: none;
+  background-color: $secondary-color;
+  color: $black-color;
+  padding: 11px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  border: solid 3px;
+}
