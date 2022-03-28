@@ -13,16 +13,22 @@
  *= require_tree .
  *= require_self
  */
+@import 'components/global_variables';
 
- //External libraries
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+//External libraries
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
- //Your partials
- @import "components/navbar";
+
+
 
 //General style
+
+
 body {
   margin: 0px;
-  background-color: #FFFFFF;
+  background-color: $background-color;
   font-family: 'Poppins', sans-serif;
 }
+
+//Your partials
+@import "components/navbar";
