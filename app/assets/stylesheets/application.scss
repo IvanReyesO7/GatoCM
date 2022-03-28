@@ -14,21 +14,31 @@
  *= require_self
  */
 
- //External libraries
- @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+ // Variables
+@import 'components/global_variables';
 
- //Your partials
- @import "components/main-head";
+// External libraries
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-//General style
+// Partials
+@import "components/navbar";
+@import "components/primary-btn";
+
+
+// General style
 body {
-  background-color: #91ADC2;
-  font-family: 'Roboto', sans-serif;
+  margin: 0px;
+  background-color: $white-color;
+  font-family: 'Poppins', sans-serif;
 }
 
+//links
+.no-decoration {
+  text-decoration: none;
+  color: $black-color;
+}
+
+// Main contaner
 .main-container {
-  background-color: #FFFFFF;
-  margin: 10px;
-  padding: 10px;
-  border: solid 1px;
+  margin: 0px 30px;
 }
