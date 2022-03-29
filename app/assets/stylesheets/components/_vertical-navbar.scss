@@ -1,0 +1,34 @@
+@import 'components/global-variables';
+
+.vertical-navbar{
+  background-color: $secondary-color;
+
+  width: 20%;
+  .header{
+    text-align: center;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+  }
+
+  li{
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 0px 40px;
+  }
+}
+
+.user-image {
+  width: 200px;
+  height: 200px;
+  padding: 15px 0px;
+}
+
+.last-item {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 20px;
+}

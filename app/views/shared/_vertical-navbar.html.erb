@@ -1,0 +1,13 @@
+<div class="vertical-navbar">
+  <div class="header">
+    <%=link_to image_tag("user-image.png", alt: "User profile image", class: "user-image"), "/"%>
+  </div>
+  <br>
+  <ul class="vnavbar-btns">
+    <li><%= link_to "Dashboard", "/", class: "no-decoration "%></li>
+    <li><%= link_to "Account", "/", class: "no-decoration "%></li>
+    <li><%= link_to "Tokens", "/", class: "no-decoration "%></li>
+    <li><%= link_to "Docs", "/", class: "no-decoration "%></li>
+    <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete , class: "no-decoration last-item"%></li>
+  </ul>
+</div>
