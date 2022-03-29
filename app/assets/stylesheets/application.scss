@@ -15,7 +15,7 @@
  */
 
  // Variables
-@import 'components/global_variables';
+@import 'components/global-variables';
 
 // External libraries
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
@@ -23,10 +23,21 @@
 // Partials
 @import "components/navbar";
 @import "components/primary-btn";
+@import "components/vertical-navbar";
 
 
 // General style
+html {
+  height: 100%;
+}
+
 body {
+  position:absolute; 
+  top:0; 
+  bottom:0; 
+  right:0; 
+  left:0;
+  width: 100%;
   margin: 0px;
   background-color: $white-color;
   font-family: 'Poppins', sans-serif;
@@ -40,5 +51,12 @@ body {
 
 // Main contaner
 .main-container {
-  margin: 0px 30px;
+  display: flex;
+  height: -moz-calc(100% - 100px);
+  height: -webkit-calc(100% - 100px);
+  height: calc(100% - 100px);
+}
+
+.content {
+  width: 80%;
 }

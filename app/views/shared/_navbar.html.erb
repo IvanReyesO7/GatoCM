@@ -4,12 +4,12 @@
     <% if current_user %>
       <span>
       Logged in as 
+          <strong>  
           <%= link_to current_user.username,
               user_applications_index_path(user_username: current_user.username),
               method: :get, class:'no-decoration' %>
-        </strong>
+          </strong>
       </span>
-      <%= link_to '[Sign out]', destroy_user_session_path, :method => :delete %>
     <% else %>
       <%= link_to 'Log in', new_user_session_path, :method => :new, class: 'secondary-btn' %>
       <%= link_to 'Get Started', new_user_registration_path, :method => :get , class: 'primary-btn'%>
