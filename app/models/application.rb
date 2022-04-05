@@ -16,7 +16,6 @@ class Application < ApplicationRecord
   end
 
   def generate_read_token
-    read_token = ReadToken.new(name: 'master', application_id: self.id)
-    read_token.save!
+    read_token = ReadToken.create!(name: 'master', application_id: self.id)
   end
 end

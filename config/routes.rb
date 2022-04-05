@@ -32,5 +32,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/:read_token/:username/:application_name/codes/:type/:title' => "codes#render_raw"
+  get '/:read_token/:user_username/:application_name/codes/:type/:title' => "codes#render_raw"
 end
