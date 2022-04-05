@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_141052) do
+ActiveRecord::Schema.define(version: 2022_04_05_122831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,15 @@ ActiveRecord::Schema.define(version: 2022_03_22_141052) do
     t.index ["application_id"], name: "index_lists_on_application_id"
   end
 
+  create_table "read_tokens", force: :cascade do |t|
+    t.string "token"
+    t.string "name"
+    t.bigint "application_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["application_id"], name: "index_read_tokens_on_application_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "api_token"
     t.string "email", default: "", null: false
@@ -98,4 +107,5 @@ ActiveRecord::Schema.define(version: 2022_03_22_141052) do
   add_foreign_key "images", "applications"
   add_foreign_key "items", "lists"
   add_foreign_key "lists", "applications"
+  add_foreign_key "read_tokens", "applications"
 end
