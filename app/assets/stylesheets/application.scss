@@ -51,6 +51,7 @@ body {
 
 // Main contaner
 .main-container {
+  padding-top: 98px;
   display: flex;
   height: -moz-calc(100% - 100px);
   height: -webkit-calc(100% - 100px);
@@ -60,4 +61,5 @@ body {
 .content {
   width: 80%;
   padding: 40px 18px 0px 80px;
+  overflow: scroll;
 }
