@@ -5,6 +5,7 @@ class CodesController < ApplicationController
   before_action :select_user_application_from_params, only: [:new, :create, :render_raw]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
   before_action :check_read_token, only: [:render_raw]
+  protect_from_forgery except: :render_raw
 
   def show
   end
@@ -37,7 +38,42 @@ class CodesController < ApplicationController
   end
 
   def render_raw
-    raise
+    begin
+      @code = Code.find_by!(title: "#{codes_params[:title]}.#{codes_params[:format]}",
+                            file_type: codes_params[:type],
+                            application: @application)
+
+      case @code.file_type
+      when 'javascript'
+        render_javascript
+      when 'css'
+        render_css
+      when 'html'
+        render_html
+      else
+        raise StandardError.new("File type not supported yet...")
+      end
+    rescue => error
+      render body: 'Not found', status: 404
+    end
+  end
+
+  def render_javascript
+    respond_to do |format|
+      format.js { render partial: "codes/shared/file" }
+    end
+  end
+
+  def render_css
+    respond_to do |format|
+      format.css { render partial: "codes/shared/file" }
+    end
+  end
+
+  def render_html
+    respond_to do |format|
+      format.html { render partial: "codes/shared/file" }
+    end
   end
 
   private
