@@ -3,9 +3,8 @@
   <span class="content-title">Hi <%= @user.username %>!</span>
   <%=link_to "Create an app", new_user_application_path, :method => :get , class: 'primary-btn'%>
 </div>
+<div class="app-cards">
 <% @applications.each do |application| %>
-  <ul>
-    <li><%= link_to application.name, user_application_path(name: application.name) %></li>
-  </ul>
+    <%= render partial: 'shared/app-card', locals: {application: application} if @applications %>
 <% end %>
-<%= button_to "Home", root_path, method: :get %>
+</div>
