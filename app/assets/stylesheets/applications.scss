@@ -6,3 +6,20 @@
   display: flex;
   align-items: flex-end;
 }
+
+.application-container{
+  margin-top: 65px;
+  
+}
+
+.application-files-title{
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: solid 1px black;
+}
+
+.application-files-cards{
+  display: flex;
+  overflow: scroll;
+}
