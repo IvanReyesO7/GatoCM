@@ -20,6 +20,9 @@
 }
 
 .application-files-cards{
+  margin-top: 18px;
   display: flex;
-  overflow: scroll;
+  overflow-x: scroll;
+  text-align: center;
+  gap: 10px;
 }
