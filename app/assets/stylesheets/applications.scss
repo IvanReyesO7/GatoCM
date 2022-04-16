@@ -6,3 +6,33 @@
   display: flex;
   align-items: flex-end;
 }
+
+.application-container{
+  margin-top: 65px;
+  
+}
+
+.application-files-title{
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: solid 1px black;
+}
+
+.application-files-cards{
+  margin-top: 18px;
+  display: flex;
+  overflow-x: scroll;
+  text-align: center;
+  gap: 10px;
+}
+
+.application-files-cards::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.application-files-cards {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
