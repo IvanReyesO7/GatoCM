@@ -13,8 +13,17 @@
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
+  position: relative;
 }
 
 .application-files-cards-title{
   margin-bottom: 10px;
+}
+
+.application-files-cards-icon-devicon{
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
