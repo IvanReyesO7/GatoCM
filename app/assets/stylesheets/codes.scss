@@ -13,3 +13,18 @@
   display: flex;
   align-items: center;
 }
+
+.code-content-main-container{
+  display: flex;
+}
+
+.code-data{
+  width: 50%;
+  overflow: hidden;
+}
+
+pre{
+  background-color: #eee;
+  border: 1px solid #999;
+  word-wrap: break-word;
+}
