@@ -6,7 +6,9 @@
 <div class="code-content-main-container">
   <%= content_tag :div, class: "code-data", data: {code: @code} do %>
     <pre>
-      <%= @code.content.html_safe %>
+      <code>
+      <%= @code.content %>
+      </code>
     </pre>
   <% end %>
   <div class="code-content-download-instructions">
