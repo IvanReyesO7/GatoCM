@@ -1,3 +1,31 @@
 // Place all the styles related to the codes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.code-content-title-container-icon{
+  height: 20px;
+  width: 20px;
+  margin-right: 18px;
+  margin-top: 45px;
+}
+
+.code-content-title-container{
+  display: flex;
+  align-items: center;
+}
+
+.code-content-main-container{
+  display: flex;
+}
+
+.code-data{
+  width: 70%;
+  overflow: hidden;
+}
+
+pre{
+  background-color: #eee;
+  border: 1px solid #999;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}

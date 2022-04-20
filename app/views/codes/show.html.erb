@@ -1,11 +1,16 @@
-<%= content_tag :div, class: "code-data", data: {code: @code} do %>
-  <h1><%= @code.title %></h1>
-  <code>
-    <%= @code.content.html_safe %>
-  </code>
-  <%= button_to "Back", user_application_path(name: @application.name), method: :get %>
-  <button class='download-btn'>Download</button>
-<% end %>
-
+<span class="route"><%= @user.username %> / <%= @application.name %> / <%= @code.title %></span>
+<div class="code-content-title-container">
+  <%= image_tag @code.icon_source, class: "code-content-title-container-icon" %>
+  <span class="content-title"><%= @code.title %></span>
+</div>
+<div class="code-content-main-container">
+  <%= content_tag :div, class: "code-data", data: {code: @code} do %>
+    <pre><code class="language-js"><%=@code.content%></code></pre>
+  <% end %>
+  <div class="code-content-download-instructions">
+  </div>
+</div>
+<%# <%= button_to "Back", user_application_path(name: @application.name), method: :get %>
+<%# <button class='download-btn'>Download</button> %>
 <%# To do: organize the javascript in the app/javascript directory %>
 <%= javascript_pack_tag 'downloadCode' %>
