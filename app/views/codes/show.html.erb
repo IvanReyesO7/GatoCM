@@ -8,6 +8,10 @@
     <pre><code class="language-js"><%=@code.content%></code></pre>
   <% end %>
   <div class="code-content-download-instructions">
+    <% if @code.file_type == "javascript" %>
+      <div class="code-content-download-instructions-title">Use this file in your project</div>
+      <span class="code-content-download-instructions-desc">Include the following line in the body of your proyect.</span>
+    <% end %>
   </div>
 </div>
 <%# <%= button_to "Back", user_application_path(name: @application.name), method: :get %>
