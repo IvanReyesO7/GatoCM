@@ -1,0 +1,6 @@
+<pre>
+<code class="language-js">
+CURL -X GET "<%= request.base_url %>/api/v1/<%= @user.username %>/<%= @application.encode_name %>/codes/<%= @code.file_type %>/<%= @code.title %>" \
+-H "Authorization: <%= @user.api_token %>"
+</code>
+</pre>
