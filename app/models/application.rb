@@ -1,3 +1,5 @@
+require 'uri'
+
 class Application < ApplicationRecord
   belongs_to :user
   has_many :lists
@@ -17,5 +19,13 @@ class Application < ApplicationRecord
 
   def generate_read_token
     read_token = ReadToken.create!(name: 'master', application_id: self.id)
+  end
+
+  def master_token
+    self.read_tokens.where(name: 'master')[0]
+  end
+
+  def encode_name
+    URI.encode(self.name)
   end
 end

@@ -11,11 +11,14 @@
     <% if @code.file_type == "javascript" %>
       <div class="code-content-download-instructions-title">Use this file in your project</div>
       <span class="code-content-download-instructions-desc">Include the following line in your proyect html.</span>
-      <%= render partial: 'codes/shared/install_snipet', locals: {application: @application} %>
+      <%= render partial: 'codes/shared/install_snipet', locals: {application: @application, user: @user} %>
     <% end %>
+    <div class="code-content-download-instructions-title">Curl through the API</div>
+    <%= render partial: 'codes/shared/api_request_snippet', locals: {application: @application, user: @user} %>
+     <div class="code-content-download-instructions-title">Direct download</div>
+     <button class='download-btn primary-btn'>Download</button>
   </div>
 </div>
 <%# <%= button_to "Back", user_application_path(name: @application.name), method: :get %>
-<%# <button class='download-btn'>Download</button> %>
 <%# To do: organize the javascript in the app/javascript directory %>
 <%= javascript_pack_tag 'downloadCode' %>
