@@ -1,1 +1,5 @@
-<pre><code class="language-js">&lt;script src="<%= "#{request.base_url}/#{application.master_token.token}/#{@user.username}/#{@application.encode_name}/codes/#{@code.file_type}/#{@code.title}" %>"&gt;&lt;/script&gt;</code></pre>
+<% if @code.file_type == "javascriopt" %>
+  <pre><code class="language-js">&lt;script src="<%= "#{request.base_url}/#{application.master_token.token}/#{@user.username}/#{@application.encode_name}/codes/#{@code.file_type}/#{@code.title}" %>"&gt;&lt;/script&gt;</code></pre>
+<% else %>
+  <pre><code class="language-css">@import url("<%= "#{request.base_url}/#{application.master_token.token}/#{@user.username}/#{@application.encode_name}/codes/#{@code.file_type}/#{@code.title}" %>");</code></pre>
+<% end %>
