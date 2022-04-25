@@ -1,5 +1,8 @@
-<% if @code.file_type == "javascriopt" %>
+<% case @code.file_type %>
+<% when "javascript" %>
   <pre><code class="language-js">&lt;script src="<%= "#{request.base_url}/#{application.master_token.token}/#{@user.username}/#{@application.encode_name}/codes/#{@code.file_type}/#{@code.title}" %>"&gt;&lt;/script&gt;</code></pre>
-<% else %>
+<% when "css" %>
   <pre><code class="language-css">@import url("<%= "#{request.base_url}/#{application.master_token.token}/#{@user.username}/#{@application.encode_name}/codes/#{@code.file_type}/#{@code.title}" %>");</code></pre>
-<% end %>
+<% when "html" %>
+  <pre><code class="language-html">&lt;link rel="import" href="<%= "#{request.base_url}/#{application.master_token.token}/#{@user.username}/#{@application.encode_name}/codes/#{@code.file_type}/#{@code.title}" %>"&gt;</code></pre>
+<%end%>
