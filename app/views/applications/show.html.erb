@@ -13,7 +13,7 @@
     <% end %>
   </div>
 </div>
-<%= render partial: "applications/shared/create-file-modal", locals: {:application => @application} %>
+<%= render partial: "applications/shared/create-file-modal", locals: {:user => @user, :application => @application, :code => Code.new} %>
 <%= javascript_pack_tag 'renderModal' %>
 <!--
 <% if @lists && !@lists.empty? %>

@@ -22,3 +22,26 @@
   font-family: 'Poppins', sans-serif;
   border: solid 3px;
 }
+
+.primary-btn-small {
+  text-decoration: none;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  width: 100%;
+}
+
+.secondary-btn-small{
+  text-decoration: none;
+  background-color: $secondary-color;
+  color: $black-color;
+  padding: 5px;
+  font-size: 10px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  border: solid 3px;
+}
