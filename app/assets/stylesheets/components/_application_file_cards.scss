@@ -31,5 +31,8 @@
 .create-file{
   background-color: $secondary-color;
   border-radius: 8px;
-  padding: 50px;
+  padding: 45px;
+  font-size: 40px;
+  color: $white-color !important;
+  font-weight: bold;
 }
