@@ -5,13 +5,16 @@
 <div class="application-container">
   <span class="application-files-title">Files</span>
   <div class="application-files-cards">
+    <a id="create-file-card" class="create-file no-decoration" href="javascript:void(0);">+</a>
     <% @application.codes.each do |file| %>
       <%= link_to user_application_code_path(application_name: @application.name, name_format: file.name_format), class:'application_files_card no-decoration' do %>
         <%= render partial: "applications/shared/application_files_cards", locals: {:file => file} %>
       <% end %>
     <% end %>
-  <div>
+  </div>
 </div>
+<%= render partial: "applications/shared/create-file-modal", locals: {:user => @user, :application => @application, :code => Code.new} %>
+<%= javascript_pack_tag 'renderModal' %>
 <!--
 <% if @lists && !@lists.empty? %>
   <h2>Lists</h2>

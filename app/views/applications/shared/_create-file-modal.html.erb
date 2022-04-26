@@ -1,0 +1,14 @@
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 class="modal-content-title">Upload a file</h3>
+    <span>Upload a file from your computer</span>
+    <%= simple_form_for code, url: user_application_codes_path(user_username: @user.username, application_name: @application.name), method: :post do |f| %>
+      <%= f.input :file, as: :file %>
+      <%= f.button :submit, "Upload", class: 'primary-btn-small' %>
+    <% end %>
+  </div>
+</div>
