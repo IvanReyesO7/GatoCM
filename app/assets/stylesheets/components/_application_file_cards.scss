@@ -16,6 +16,17 @@
   position: relative;
 }
 
+.application-images-cards-icon{
+  background-image: url('/assets/code.png');
+  height: 90px;
+  width: 90px;
+  margin: 15px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  position: relative;
+}
+
 .application-files-cards-title{
   margin-bottom: 10px;
 }
