@@ -28,4 +28,8 @@ class Application < ApplicationRecord
   def encode_name
     URI.encode(self.name)
   end
+
+  def display_codes_in_order
+    self.codes.order('created_at DESC')
+  end
 end
