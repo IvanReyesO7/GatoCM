@@ -1,4 +1,9 @@
-<div class="application-files-cards-icon">
-  <%= image_tag file.icon_source, class: "application-files-cards-icon-devicon" %>
-</div>
-<div class="application-files-cards-title"><%= file.display_name %></div>
+<%  if type == 'code'%>
+  <div class="application-files-cards-icon">
+    <%= image_tag object.icon_source, class: "application-files-cards-icon-devicon" %>
+  </div>
+<%  elsif type == 'image'%>
+  <div class="application-images-cards-icon" style="background-image: url('<%= object.url %>');">
+  </div>
+<% end %>
+<div class="application-files-cards-title"><%= object.display_name %></div>

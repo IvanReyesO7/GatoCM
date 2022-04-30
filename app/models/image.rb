@@ -13,6 +13,14 @@ class Image < ApplicationRecord
     self.name_format = self.title.downcase.gsub(/[\s|\.]/,"_")
   end 
 
+  def display_name
+    if title.length > 15
+      title.slice(0..9) + '..'
+    else
+      title
+    end
+  end
+
   def create_component
     Component.new.tap do |comp|
       comp.real_component_type = self.class
