@@ -15,7 +15,7 @@
   <span class="application-files-title">Images</span>
   <div class="application-files-cards">
   <a id="create-image-card" class="create-file no-decoration" href="javascript:void(0);">+</a>
-  <% @application.images.each do |image| %>
+  <% @application.display_images_in_order.each do |image| %>
   <%= link_to user_application_image_path(application_name: @application.name, name_format: image.name_format), class:'application_files_card no-decoration' do %>
       <%= render partial: "applications/shared/application_files_cards", locals: {:object => image, type: 'image'} %>
     <% end %>

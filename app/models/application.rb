@@ -32,4 +32,9 @@ class Application < ApplicationRecord
   def display_codes_in_order
     self.codes.order('created_at DESC')
   end
+
+  def display_images_in_order
+    self.images.order('created_at DESC')
+  end
+
 end
