@@ -23,7 +23,10 @@
   </div>
 </div>
 <%= render partial: "applications/shared/create-file-modal", locals: {:user => @user, :application => @application, :code => Code.new} %>
-<%= javascript_pack_tag 'renderModal' %>
+<%= render partial: "applications/shared/create-image-modal", locals: {:user => @user, :application => @application, :image => Image.new} %>
+<%= javascript_pack_tag 'renderModalCode' %>
+<%= javascript_pack_tag 'renderModalImage' %>
+
 <!--
 <% if @lists && !@lists.empty? %>
   <h2>Lists</h2>
