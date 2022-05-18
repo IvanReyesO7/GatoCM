@@ -10,7 +10,7 @@
   <div class="code-content-download-instructions">
     <% if @code.file_type == "javascript" || @code.file_type == "css" ||  @code.file_type == "html" %>
       <div class="code-content-download-instructions-title">Use this file in your project</div>
-      <span class="code-content-download-instructions-desc">Include the following line in your proyect html.</span>
+      <span class="code-content-download-instructions-desc">Include the following line in your project html.</span>
       <%= render partial: 'codes/shared/install_snipet', locals: {application: @application, user: @user} %>
     <% end %>
     <div class="code-content-download-instructions-title">Curl through the API</div>
