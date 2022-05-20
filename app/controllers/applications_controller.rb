@@ -3,6 +3,7 @@ class ApplicationsController < ApplicationController
   before_action :select_user_and_application_from_params, only: [:show]
   before_action :raise_unless_visible_multiple, only: [:index]
   before_action :raise_unless_visible, only: [:show]
+  before_action :select_user_from_params, only: [:create]
   
   def index
   end
@@ -18,8 +19,14 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = Application.new(name: application_params, user: current_user)
-    @application.valid? ? @Application.save! : raise
+    @application = Application.new(name: application_params[:name], user: @user)
+    if @application.valid?
+      @application.save!
+      redirect_to user_application_path(user_username: @user.username, name: @application.name), status: 201
+    else
+      flash[:alert] = "Something went wrong. #{@application.errors.full_messages.to_sentence}"
+      redirect_to user_applications_index_path, status: 400
+    end
   end
 
   def update
@@ -47,5 +54,9 @@ class ApplicationsController < ApplicationController
   def select_user_and_application_from_params
     @user = User.find_by!(username: application_params[:user_username])
     @application = Application.find_by!(name: application_params[:name], user: @user)
+  end
+
+  def select_user_from_params
+    @user = User.find_by!(username: application_params[:user_username])
   end
 end

@@ -53,4 +53,26 @@ RSpec.describe "Applications", type: :request do
       end
     end
   end
+
+  describe "POST /create" do
+    it "Should create an application if passed a succesfull request" do
+      post user_applications_path(user_username: user.username,
+                                  name: 'Test_app')
+      expect(response.status).to eq(201)
+    end
+
+    it "Should generate a master token when an application is created" do
+      post user_applications_path(user_username: user.username,
+                                  name: 'Test_app')
+      @app = Application.find_by!(name: "Test_app", user: user)
+
+      expect(@app.master_token).not_to be_nil
+      expect(@app.master_token).to be_an_instance_of(ReadToken)
+    end
+
+    it "Should not create an application if passed wrong parameters" do
+      post user_applications_path(user_username: user.username)
+      expect(response.status).to eq(400)
+    end
+  end
 end
