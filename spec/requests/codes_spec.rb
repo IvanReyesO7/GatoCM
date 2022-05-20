@@ -201,4 +201,30 @@ RSpec.describe "Codes", type: :request do
       end
     end
   end
+
+  describe "Render raw" do
+    let(:user) { create(:user) }
+
+    before do
+      @app = create(:application, user: user)
+      @code = create(:code_type_javascript, application: @app)
+    end
+
+    it "Should respond with a 200 to a succesfull request" do
+      get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/codes/javascript/#{@code.title}"
+      expect(response.status).to eq(200)
+    end
+
+    it "Should respond with an error to a request with wrong token" do
+      random_token = SecureRandom.hex(12)
+      expect {
+        get "/#{random_token}/#{user.username}/#{@app.name}/codes/javascript/#{@code.title}"
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it "Should respond with the right format" do
+      get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/codes/javascript/#{@code.title}"
+      expect(response.header["Content-type"]).to eq("text/#{@code.file_type}; charset=utf-8")
+    end
+  end
 end
