@@ -53,4 +53,17 @@ RSpec.describe "Applications", type: :request do
       end
     end
   end
+
+  describe "POST /create" do
+    it "Should create an application if passed a succesfull request" do
+      post user_applications_path(user_username: user.username,
+                                  name: 'Test_app')
+      expect(response.status).to eq(201)
+    end
+
+    it "Should not create an application if passed wrong parameters" do
+      post user_applications_path(user_username: user.username)
+      expect(response.status).to eq(400)
+    end
+  end
 end
