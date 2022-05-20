@@ -13,7 +13,12 @@ FactoryBot.define do
       content { nil }
     end
 
+    trait :javascript do
+      file_type { "javascript" }
+    end
+
     factory :no_title_code, traits: [:no_title]
     factory :no_content_code, traits: [:no_content]
+    factory :type_javascript, traits: [:javascript]
   end
 end
