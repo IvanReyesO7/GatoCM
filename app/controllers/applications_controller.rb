@@ -48,7 +48,7 @@ class ApplicationsController < ApplicationController
 
   def select_user_and_applications_from_params
     @user = User.find_by!(username: application_params[:user_username])
-    @applications = Application.where(user: @user)
+    @applications = Application.where(user: @user).order('created_at DESC')
   end
 
   def select_user_and_application_from_params
