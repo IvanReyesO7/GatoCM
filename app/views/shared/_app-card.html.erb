@@ -2,15 +2,15 @@
 <div class="app-card">
   <span><%=  application.name %></span>
   <% @time_difference = (Time.zone.now.time - application.created_at.time).floor %>
-  <% if @time_difference < 60%>
-    <span class="app-card-date">Created <%=@time_difference%> seconds ago</span>
+  <% if @time_difference < 60 %>
+    <span class="app-card-date">Created <%= @time_difference %> seconds ago</span>
   <% elsif (@time_difference/60).floor < 60%>
     <span class="app-card-date">Created <%= (@time_difference/60).floor %> minutes ago</span>
-  <% elsif (@time_difference/60/60).floor < 60%>
+  <% elsif (@time_difference/60/60).floor < 60 %>
     <span class="app-card-date">Created <%= (@time_difference/60/60).floor %> hours ago</span>
-  <% elsif (@time_difference/60/60/24).floor < 30%>
+  <% elsif (@time_difference/60/60/24).floor < 30 %>
     <span class="app-card-date">Created <%= (@time_difference/60/60/24).floor %> days ago</span>
-  <% elsif (@time_difference/60/60/24/30).floor >= 1%>
+  <% elsif (@time_difference/60/60/24/30).floor >= 1 %>
     <span class="app-card-date">Created <%= (@time_difference/60/60/24/30).floor %> months ago</span>
   <% end %>
 </div>
