@@ -4,7 +4,7 @@ class ImagesController < ApplicationController
 
   before_action :select_user_application_image_from_params, only: [:show, :destroy, :download]
   before_action :raise_unless_visible_component, only: [:show]
-  before_action :select_user_application_from_params, only: [:new, :create]
+  before_action :select_user_application_from_params, only: [:new, :create, :serve]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
 
   SUPPORTED_FORMATS = ["image/png", "image/jpeg", "image/jpg"]
@@ -51,10 +51,15 @@ class ImagesController < ApplicationController
     send_data data, :disposition => 'attachment', :filename=>"#{@image.name_format}.#{@image.extension}"
   end
 
+  def serve
+    @image = Image.find_by!(application: @application ,name_format: params["image_name_format"])
+    redirect_to @image.url
+  end
+
   private
 
   def images_params
-    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, image: [:photo, :title])
+    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, :image_name_format, image: [:photo, :title])
   end
 
   def select_user_application_image_from_params
