@@ -12,9 +12,9 @@
   <body>
     <%= render partial: 'shared/navbar'%>
     <div class="main-container">
-      <%if current_user%>
+      <% if current_user %>
         <%= render partial: 'shared/vertical-navbar'%>
-      <%end%>
+      <% end %>
       <div class="content">
         <div class="notice"><%= notice %></div>
         <div class="alert"><%= alert %></div>
