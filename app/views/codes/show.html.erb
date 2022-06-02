@@ -2,6 +2,10 @@
 <div class="code-content-title-container">
   <%= image_tag @code.icon_source, class: "code-content-title-container-icon" %>
   <span class="content-title"><%= @code.title %></span>
+  <div class="code-content-download-count">
+    <span>Downloads</span>
+    <span><%= @code.downloads %></span>
+  </div>
 </div>
 <div class="code-content-main-container">
   <%= content_tag :div, class: "code-data", data: {code: @code} do %>
