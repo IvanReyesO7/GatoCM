@@ -53,6 +53,7 @@ class CodesController < ApplicationController
       else
         raise StandardError.new("File type not supported yet...")
       end
+      # If rendering is succesfull, add +1 to the downloads count
       @code.downloads += 1
       @code.save
     rescue => error
