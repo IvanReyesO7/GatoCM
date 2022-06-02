@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_05_122831) do
+ActiveRecord::Schema.define(version: 2022_06_02_042800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2022_04_05_122831) do
     t.string "name_format"
     t.string "file_type"
     t.string "extension"
+    t.integer "downloads", default: 0
     t.index ["application_id"], name: "index_codes_on_application_id"
   end
 
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_04_05_122831) do
     t.string "public_id"
     t.string "file_type"
     t.string "extension"
+    t.integer "downloads", default: 0
     t.index ["application_id"], name: "index_images_on_application_id"
   end
 
@@ -74,6 +76,7 @@ ActiveRecord::Schema.define(version: 2022_04_05_122831) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name_format"
+    t.integer "downloads", default: 0
     t.index ["application_id"], name: "index_lists_on_application_id"
   end
 
