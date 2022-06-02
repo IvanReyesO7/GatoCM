@@ -226,5 +226,15 @@ RSpec.describe "Codes", type: :request do
       get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/codes/javascript/#{@code.title}"
       expect(response.header["Content-type"]).to eq("text/#{@code.file_type}; charset=utf-8")
     end
+
+    it "Should have 0 as download count before being rendered" do
+      expect(@code.downloads).to eq(0)
+    end
+
+    it "Should increase the download count +1 if rendered successfuly" do
+      get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/codes/javascript/#{@code.title}"
+      @code.reload
+      expect(@code.downloads).to eq(1)
+    end
   end
 end
