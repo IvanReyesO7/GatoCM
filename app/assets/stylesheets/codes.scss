@@ -53,6 +53,17 @@ code {
 
 .code-content-download-count{
   display: flex;
-  margin: 45px 0px 0px 20px;
-
+  border: 1px black solid;
+  border-radius: 5px;
+ span{
+   font-size: 10px;
+ }
+ .count{
+   margin-left: 5px;
+   padding: 3px;
+ }
+ .code-content-download-count-title{
+   background-color: #F0F0F0;
+   padding: 3px;
+ }
 }

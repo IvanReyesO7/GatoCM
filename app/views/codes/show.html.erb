@@ -2,10 +2,6 @@
 <div class="code-content-title-container">
   <%= image_tag @code.icon_source, class: "code-content-title-container-icon" %>
   <span class="content-title"><%= @code.title %></span>
-  <div class="code-content-download-count">
-    <span>Downloads</span>
-    <span><%= @code.downloads %></span>
-  </div>
 </div>
 <div class="code-content-main-container">
   <%= content_tag :div, class: "code-data", data: {code: @code} do %>
@@ -21,8 +17,14 @@
     <%= render partial: 'codes/shared/api_request_snippet', locals: {application: @application, user: @user} %>
      <div class="code-content-download-instructions-title">Direct download</div>
      <button class='download-btn primary-btn'>Download</button>
+     <div class="code-content-download-instructions-title">Number of downloads</div>
+    <div class="code-content-download-count">
+      <span class="code-content-download-count-title">Downloads</span>
+      <span class="count"><%= @code.downloads %></span>
+    </div>
   </div>
 </div>
 <%# <%= button_to "Back", user_application_path(name: @application.name), method: :get %>
 <%# To do: organize the javascript in the app/javascript directory %>
+
 <%= javascript_pack_tag 'downloadCode' %>
