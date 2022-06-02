@@ -53,6 +53,7 @@ class ImagesController < ApplicationController
 
   def serve
     @image = Image.find_by!(application: @application ,name_format: params["image_name_format"])
+    # If rendering is succesfull, add +1 to the downloads count
     @image.downloads += 1
     @image.save
     redirect_to @image.url
