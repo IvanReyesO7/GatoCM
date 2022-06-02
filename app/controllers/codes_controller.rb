@@ -53,6 +53,8 @@ class CodesController < ApplicationController
       else
         raise StandardError.new("File type not supported yet...")
       end
+      @code.downloads += 1
+      @code.save
     rescue => error
       render body: 'Not found', status: 404
     end
