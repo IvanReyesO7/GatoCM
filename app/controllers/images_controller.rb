@@ -53,6 +53,8 @@ class ImagesController < ApplicationController
 
   def serve
     @image = Image.find_by!(application: @application ,name_format: params["image_name_format"])
+    @image.downloads += 1
+    @image.save
     redirect_to @image.url
   end
 
