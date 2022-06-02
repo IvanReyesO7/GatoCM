@@ -50,3 +50,20 @@ code {
 .code-content-download-instructions-desc{
   font-size: 16px;
 }
+
+.code-content-download-count{
+  display: flex;
+  border: 1px black solid;
+  border-radius: 5px;
+ span{
+   font-size: 10px;
+ }
+ .count{
+   margin-left: 5px;
+   padding: 3px;
+ }
+ .code-content-download-count-title{
+   background-color: #F0F0F0;
+   padding: 3px;
+ }
+}
