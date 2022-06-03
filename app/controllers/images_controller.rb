@@ -52,11 +52,15 @@ class ImagesController < ApplicationController
   end
 
   def serve
-    @image = Image.find_by!(application: @application ,name_format: params["image_name_format"])
-    # If rendering is succesfull, add +1 to the downloads count
-    @image.downloads += 1
-    @image.save
-    redirect_to @image.url
+    begin
+      @image = Image.find_by!(application: @application ,name_format: params["image_name_format"])
+      # If rendering is succesfull, add +1 to the downloads count
+      @image.downloads += 1
+      @image.save
+      redirect_to @image.url
+    rescue => error
+      render body: 'Not found', status: 404
+    end
   end
 
   private
