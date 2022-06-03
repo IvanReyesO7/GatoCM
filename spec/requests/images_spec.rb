@@ -233,12 +233,23 @@ RSpec.describe "Images", type: :request do
     end
 
     context "Unsuccessful request" do
-      it "Should response with an 404 error" do
+      it "Should respond with an 404 error" do
         @app = create(:application, user: user)
         @image = create(:image, application: @app)
         get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/images/image_name_format/serve"
         expect(response.status).to eq(404)
         expect(response.body).to eq("Not found")
+      end
+    end
+
+    context "Wrong read token" do
+      it "Should respond with an error to a request with wrong token" do
+        @app = create(:application, user: user)
+        @image = create(:image, application: @app)
+        random_token = SecureRandom.hex(12)
+        expect {
+          get "/#{random_token}/#{user.username}/#{@app.name}/images/#{@image.name_format}/serve"
+        }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
