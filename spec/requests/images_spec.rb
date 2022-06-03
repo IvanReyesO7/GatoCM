@@ -218,4 +218,15 @@ RSpec.describe "Images", type: :request do
       end
     end
   end
+
+  describe "serve" do
+    let(:user) { create(:user) }
+
+    it "Should redirect to image url when served" do
+      @app = create(:application, user: user)
+      @image = create(:image, application: @app)
+      get "/#{user.username}/#{@app.name}/images/#{@image.title}/serve"
+      expect(response.header['location']).to eq(@image.url)
+    end
+  end
 end

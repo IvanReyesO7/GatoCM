@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :image do
     application { nil }
-    title {"random title"}
+    title {"randomtitle"}
     url { "https://example.com" }
     public_id { "kattongoukakyuunojutsu" }
 
