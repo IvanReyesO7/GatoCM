@@ -227,7 +227,7 @@ RSpec.describe "Images", type: :request do
       it "Should redirect to image url when served" do
         @app = create(:application, user: user)
         @image = create(:image, application: @app)
-        get "/#{user.username}/#{@app.name}/images/#{@image.title}/serve"
+        get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/images/#{@image.name_format}/serve"
         expect(response.header['location']).to eq(@image.url)
       end
     end
@@ -236,7 +236,7 @@ RSpec.describe "Images", type: :request do
       it "Should response with an 404 error" do
         @app = create(:application, user: user)
         @image = create(:image, application: @app)
-        get "/#{user.username}/#{@app.name}/images/image_title/serve"
+        get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/images/image_name_format/serve"
         expect(response.status).to eq(404)
         expect(response.body).to eq("Not found")
       end
