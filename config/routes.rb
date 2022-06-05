@@ -11,10 +11,8 @@ Rails.application.routes.draw do
       end
       resources :images, param: :name_format, path: '/images/', only: [:show, :new, :create, :edit, :update, :destroy] do
         post "/download" => "images#download"
-        get "/serve" => "images#serve"
       end
       resources :codes, param: :name_format, path: '/codes/', only: [:show, :new, :create, :edit, :update, :destroy]
-      get "/codes/:type/:title" => "codes#render_raw"
     end
   end
 
@@ -34,4 +32,5 @@ Rails.application.routes.draw do
   end
 
   get '/:read_token/:user_username/:application_name/codes/:type/:title' => "codes#render_raw"
+  get '/:read_token/:user_username/:application_name/images/:name_format/serve' => "images#serve"
 end

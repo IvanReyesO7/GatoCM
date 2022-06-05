@@ -6,6 +6,7 @@ class ImagesController < ApplicationController
   before_action :raise_unless_visible_component, only: [:show]
   before_action :select_user_application_from_params, only: [:new, :create, :serve]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
+  before_action :check_read_token, only: [:serve]
 
   SUPPORTED_FORMATS = ["image/png", "image/jpeg", "image/jpg"]
 
@@ -53,7 +54,7 @@ class ImagesController < ApplicationController
 
   def serve
     begin
-      @image = Image.find_by!(application: @application ,name_format: params["image_name_format"])
+      @image = Image.find_by!(application: @application ,name_format: params[:name_format])
       # If rendering is succesfull, add +1 to the downloads count
       @image.downloads += 1
       @image.save
@@ -66,7 +67,7 @@ class ImagesController < ApplicationController
   private
 
   def images_params
-    params.permit(:user_username, :application_name, :name_format, :authenticity_token, :commit, :image_name_format, image: [:photo, :title])
+    params.permit(:user_username, :read_token, :application_name, :name_format, :authenticity_token, :commit, :image_name_format, image: [:photo, :title])
   end
 
   def select_user_application_image_from_params
@@ -78,5 +79,12 @@ class ImagesController < ApplicationController
   def select_user_application_from_params
     @user = User.find_by!(username: images_params[:user_username])
     @application = Application.find_by!(user: @user, name: images_params[:application_name])
+  end
+
+  def check_read_token
+    token_passed = images_params[:read_token]
+    unless @application.read_tokens.any? { |tkn| tkn.token == token_passed }
+      raise ActiveRecord::RecordNotFound.new
+    end
   end
 end
