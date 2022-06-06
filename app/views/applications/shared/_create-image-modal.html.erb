@@ -3,7 +3,7 @@
 
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span class="close-image">&times;</span>
     <h3 class="modal-content-title">Upload a file</h3>
     <span>Upload a file from your computer</span>
     <%= simple_form_for image, url: user_application_images_path(user_username: @user.username, application_name: @application.name), method: :post do |f| %>
