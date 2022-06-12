@@ -54,8 +54,7 @@ class CodesController < ApplicationController
         raise StandardError.new("File type not supported yet...")
       end
       # If rendering is succesfull, add +1 to the downloads count
-      @code.downloads += 1
-      @code.save
+      @code.increase_download_count!
     rescue => error
       render body: 'Not found', status: 404
     end
