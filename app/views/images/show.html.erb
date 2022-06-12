@@ -1,6 +1,18 @@
-<h1><%= @image.title %></h1>
-<p><%= @image.url %></p>
-<%= image_tag @image.url, style: "max-width: 450px" %>
-<%= link_to "Download", user_application_image_download_path(image_name_format: @image.name_format, name_format: @image.name_format), method: :post %>
+<span class="route"><%= @user.username %> / <%= @application.name %> / <%= @image.title %></span>
+<div class="code-content-title-container" style="margin-bottom: 10px;">
+  <%= image_tag 'image.png', class: "code-content-title-container-icon" %>
+  <span class="content-title"><%= @image.title %></span>
+</div>
+<div class="code-content-main-container">
+  <div class="application_files_card">
+      <div class="application-images-cards-icon" style="background-image: url('<%= @image.url %>');"></div>
+  </div>
+  <div class="code-content-download-instructions">
+    <div class="code-content-download-instructions-title">Use this file in your project</div>
+    <%= render partial: 'images/shared/install_snipet', locals: {application: @application, user: @user} %>
+    <div class="code-content-download-instructions-title", style="margin-bottom: 20px;">Direct download</div>
+    <%= link_to "Download", user_application_image_download_path(image_name_format: @image.name_format, name_format: @image.name_format), method: :post, class: 'download-btn primary-btn' %>
+  </div>
+</div>
 
-<%= button_to "Back", user_application_path(name: @application.name), method: :get %>
+<%# <%= button_to "Back", user_application_path(name: @application.name), method: :get %>
