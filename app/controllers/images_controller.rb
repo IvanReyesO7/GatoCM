@@ -56,8 +56,7 @@ class ImagesController < ApplicationController
     begin
       @image = Image.find_by!(application: @application ,name_format: params[:name_format])
       # If rendering is succesfull, add +1 to the downloads count
-      @image.downloads += 1
-      @image.save
+      @image.increase_download_count!
       redirect_to @image.url
     rescue => error
       render body: 'Not found', status: 404
