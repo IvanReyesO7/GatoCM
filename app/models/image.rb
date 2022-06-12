@@ -30,4 +30,9 @@ class Image < ApplicationRecord
       comp.save!
     end
   end
+
+  def increase_download_count!
+    self.downloads += 1
+    self.save
+  end
 end
