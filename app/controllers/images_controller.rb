@@ -50,6 +50,7 @@ class ImagesController < ApplicationController
     url = @image.url
     data = open(url).read
     send_data data, :disposition => 'attachment', :filename=>"#{@image.name_format}.#{@image.extension}"
+    @image.increase_download_count!
   end
 
   def serve
