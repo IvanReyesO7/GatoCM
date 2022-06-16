@@ -10,8 +10,16 @@
   <div class="image-content-download-instructions">
     <div class="code-content-download-instructions-title">Use this file in your project</div>
     <%= render partial: 'images/shared/install_snipet', locals: {application: @application, user: @user} %>
-    <div class="code-content-download-instructions-title", style="margin-bottom: 20px;">Direct download</div>
-    <%= link_to "Download", user_application_image_download_path(image_name_format: @image.name_format, name_format: @image.name_format), method: :post, class: 'download-btn primary-btn' %>
+    <div style="display: flex;">
+      <div>
+        <div class="code-content-download-instructions-title", style="margin-bottom: 20px;">Direct download</div>
+        <%= link_to "Download", user_application_image_download_path(image_name_format: @image.name_format, name_format: @image.name_format), method: :post, class: 'download-btn primary-btn' %>
+      </div>
+      <div style="margin-left: 10px;">
+        <div class="code-content-download-instructions-title">Download count</div>
+        <span style="display: block; text-align: center;"><%= @image.downloads %></span>
+      </div>
+    </div>
   </div>
 </div>
 
