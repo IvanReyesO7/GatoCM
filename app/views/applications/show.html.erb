@@ -35,6 +35,8 @@
 
 <%= render partial: "applications/shared/create-file-modal", locals: {:user => @user, :application => @application, :code => Code.new} %>
 <%= render partial: "applications/shared/create-image-modal", locals: {:user => @user, :application => @application, :image => Image.new} %>
+<%= render partial: "applications/shared/create-list-modal", locals: {:user => @user, :application => @application, :list => List.new} %>
+
 <%= javascript_pack_tag 'renderModalCode' %>
 <%= javascript_pack_tag 'renderModalImage' %>
 
