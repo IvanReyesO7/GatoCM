@@ -50,6 +50,20 @@
   cursor: pointer;
 }
 
+.close-list {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-list:hover,
+.close-list:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .modal-content-title {
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
