@@ -12,7 +12,15 @@ class List < ApplicationRecord
 
   def generate_name_fomat
     self.name_format = self.name.downcase.gsub(/[\s|\.]/,"_")
-  end 
+  end
+
+  def display_name
+    if name.length > 15
+      name.slice(0..9) + '..'
+    else
+      name
+    end
+  end
 
   def create_component
     Component.new.tap do |comp|

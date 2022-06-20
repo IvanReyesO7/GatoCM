@@ -5,5 +5,9 @@
 <%  elsif type == 'image'%>
   <div class="application-images-cards-icon" style="background-image: url('<%= object.url %>');">
   </div>
+<%  elsif type == 'list'%>
+  <div class="application-lists-cards-icon">
+    <%= image_tag 'list.png' %>
+  </div>
 <% end %>
 <div class="application-files-cards-title"><%= object.display_name %></div>
