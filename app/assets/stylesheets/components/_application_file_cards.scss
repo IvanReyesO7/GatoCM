@@ -27,6 +27,17 @@
   position: relative;
 }
 
+.application-lists-cards-icon{
+  background-color: $white-color;
+  height: 90px;
+  width: 90px;
+  margin: 15px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  position: relative;
+}
+
 .application-files-cards-title{
   margin-bottom: 10px;
 }
