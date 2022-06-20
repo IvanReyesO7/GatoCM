@@ -23,7 +23,7 @@
   </div>
   <span class="application-files-title">Lists</span>
   <div class="application-files-cards">
-    <a id="create-image-card" class="create-file no-decoration" href="javascript:void(0);">+</a>
+    <a id="create-list-card" class="create-file no-decoration" href="javascript:void(0);">+</a>
     <% @application.display_lists_in_order.each do |list| %>
       <%= link_to user_application_list_path(application_name: @application.name, name_format: list.name_format), class:'application_files_card no-decoration' do %>
         <%= render partial: "applications/shared/application_files_cards", locals: {:object => list, type: 'list'} %>
@@ -39,6 +39,7 @@
 
 <%= javascript_pack_tag 'renderModalCode' %>
 <%= javascript_pack_tag 'renderModalImage' %>
+<%= javascript_pack_tag 'renderModalList' %>
 
 <!--
 <% if @lists && !@lists.empty? %>
