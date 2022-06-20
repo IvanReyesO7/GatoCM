@@ -37,4 +37,8 @@ class Application < ApplicationRecord
     self.images.order('created_at DESC')
   end
 
+  def display_lists_in_order
+    self.lists.order('created_at DESC')
+  end
+
 end

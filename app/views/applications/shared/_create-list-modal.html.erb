@@ -1,0 +1,13 @@
+<!-- The Modal -->
+<div id="myModalList" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close-list">&times;</span>
+    <h3 class="modal-content-title">Create a list</h3>
+    <%= simple_form_for(list, method: :post, url: user_application_lists_path(application_name: application.name)) do |form| %>
+      <%= form.input :name %> 
+      <%= form.submit %>
+    <% end %>
+  </div>
+</div>
