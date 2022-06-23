@@ -70,6 +70,8 @@ class ListsController < ApplicationController
     begin
       @list = List.find_by!(name_format: list_params[:name_format], application: @application)
       @items = @list.items
+    rescue => error
+      render body: 'Not found', status: 404
     end
   end
 
@@ -93,7 +95,7 @@ class ListsController < ApplicationController
   def check_read_token
     token_passed = list_params[:read_token]
     unless @application.read_tokens.any? { |tkn| tkn.token == token_passed }
-      raise ActiveRecord::RecordNotFound.new
+      render body: 'Not found', status: 404
     end
   end
 end
