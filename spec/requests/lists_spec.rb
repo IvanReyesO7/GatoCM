@@ -222,4 +222,30 @@ RSpec.describe "Lists", type: :request do
       end
     end
   end
+
+  describe "Serve items" do
+    let(:user) { create(:user) }
+
+    before do
+      @app = create(:application, user: user)
+      @list = create(:list, application: @app)
+    end
+
+    it "Should respond with a 200 to a succesfull request" do
+      get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/lists/#{@list.name_format}/serve.json"
+      expect(response.status).to eq(200)
+    end
+
+    it "Should respond with an error to a request with wrong token" do
+      random_token = SecureRandom.hex(12)
+      expect {
+        get "/#{random_token}//#{user.username}/#{@app.name}/lists/#{@list.name_format}/serve.json"
+      }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it "Should respond with JSON format" do
+      get "/#{@app.master_token.token}/#{user.username}/#{@app.name}/lists/#{@list.name_format}/serve.json"
+      expect(response.header["Content-type"]).to eq("application/json; charset=utf-8")
+    end
+  end
 end
