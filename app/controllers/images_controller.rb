@@ -84,7 +84,7 @@ class ImagesController < ApplicationController
   def check_read_token
     token_passed = images_params[:read_token]
     unless @application.read_tokens.any? { |tkn| tkn.token == token_passed }
-      render body: 'Not found', status: 404
+      raise ActiveRecord::RecordNotFound.new
     end
   end
 end
