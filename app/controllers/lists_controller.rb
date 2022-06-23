@@ -2,9 +2,10 @@ require 'json'
 
 class ListsController < ApplicationController
   before_action :select_user_application_list_from_params, only: [:show, :destroy]
-  before_action :select_user_application_from_params, only: [:new, :create]
+  before_action :select_user_application_from_params, only: [:new, :create, :serve_items]
   before_action :raise_unless_visible_component, only: [:show]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
+  before_action :check_read_token, only: [:serve_items]
 
   
   def show
@@ -65,10 +66,17 @@ class ListsController < ApplicationController
     import_succesfull
   end
 
+  def serve_items
+    begin
+      @list = List.find_by!(name_format: list_params[:name_format], application: @application)
+      @items = @list.items
+    end
+  end
+
   private
 
   def list_params
-    params.permit(:user_username, :application_name, :list_name_format, :name_format, :authenticity_token, :commit, { list: [:name, :uploaded_file] })
+    params.permit(:user_username, :application_name, :list_name_format, :name_format, :authenticity_token, :commit, :read_token, { list: [:name, :uploaded_file] })
   end
 
   def select_user_application_list_from_params
@@ -80,5 +88,12 @@ class ListsController < ApplicationController
   def select_user_application_from_params
     @user = User.find_by!(username: list_params[:user_username])
     @application = Application.find_by!(name: list_params[:application_name], user: @user)
+  end
+
+  def check_read_token
+    token_passed = list_params[:read_token]
+    unless @application.read_tokens.any? { |tkn| tkn.token == token_passed }
+      raise ActiveRecord::RecordNotFound.new
+    end
   end
 end
