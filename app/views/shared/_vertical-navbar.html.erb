@@ -1,6 +1,8 @@
 <div class="vertical-navbar">
   <div class="header">
-    <%=link_to image_tag("user-image.png", alt: "User profile image", class: "user-image"), "/"%>
+    <% if current_user %>
+      <%=link_to image_tag("https://avatars.dicebear.com/api/male/#{current_user.username}.svg?background=%767676", alt: "User profile image", class: "user-image"), "/"%>
+    <% end %>
   </div>
   <br>
   <ul class="vnavbar-btns">
