@@ -11,6 +11,9 @@
   height: 85px;
   font-size: 20px;
   border-bottom: 4px solid $secondary-color;
+  &:hover{
+    background-color: #f1eded49;
+  }
 }
 
 .app-card-date{
