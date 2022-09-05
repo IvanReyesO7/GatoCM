@@ -3,7 +3,6 @@ class AccountSettingsController < ApplicationController
   before_action :raise_unless_logged_in, only:[:show]
 
   def show
-    raise  
   end
 
   private
