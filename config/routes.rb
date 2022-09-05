@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, param: :username, path: '/', only: [:show, :edit, :update, :destroy] do
     get '/' => 'applications#index', as: :applications_index
+    get 'account_settings' => 'account_settings#show', as: :user_account_settings
     resources :applications, param: :name, path: '/', only: [:show, :edit, :update, :destroy, :new, :create] do
       resources :lists, param: :name_format, path: '/lists/', only: [:show, :new, :create, :edit, :update, :destroy] do
         post "/import" => "lists#import_items"
