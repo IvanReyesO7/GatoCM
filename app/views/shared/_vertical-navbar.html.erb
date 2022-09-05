@@ -7,7 +7,7 @@
   <br>
   <ul class="vnavbar-btns">
     <li class="vnavbar-li"><%= link_to "Dashboard", user_applications_index_path(user_username: current_user.username), class: "no-decoration "%></li>
-    <li class="vnavbar-li"><%= link_to "Account", "/", class: "no-decoration "%></li>
+    <li class="vnavbar-li"><%= link_to "Account", "/#{current_user.username}/account_settings", class: "no-decoration "%></li>
     <li class="vnavbar-li"><%= link_to "Tokens", "/", class: "no-decoration "%></li>
     <li class="vnavbar-li"><%= link_to "Docs", "/", class: "no-decoration "%></li>
     <li class="vnavbar-li"><%= link_to "Sign out", destroy_user_session_path, :method => :delete , class: "no-decoration last-item"%></li>
