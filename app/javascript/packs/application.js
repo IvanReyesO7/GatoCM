@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'prismjs'
+import "jquery"
 
 //= require jquery3
 //= require jquery_ujs
