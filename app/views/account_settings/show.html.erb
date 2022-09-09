@@ -2,3 +2,7 @@
 <div class="content-title-container">
   <span class="content-title">Account Settings</span>
 </div>
+ <%= simple_form_for(@user, method: :post, url: user_path(username: @user.username)) do |form| %>
+  <%= form.input :username %>
+  <%= form.button :submit, class: 'my_class' %>
+<% end %>
