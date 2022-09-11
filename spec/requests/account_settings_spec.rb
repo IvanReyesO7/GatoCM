@@ -20,10 +20,19 @@ RSpec.describe "AccountSettings", type: :request do
     end
   
     describe "Change user information" do
-      it "should allow users to change their username" do
+      it "should allow users to change their username if not taken" do
         post "/#{user.username}/user_update/",
         params: {
           user: {username: "new_username"}
+        }
+        expect(response).to have_http_status(302)
+        expect(flash[:alert]).to eq("Success!")
+      end
+
+      it "should allow users to change their email if not taken" do
+        post "/#{user.username}/user_update/",
+        params: {
+          user: {email: "new_mail@email.com"}
         }
         expect(response).to have_http_status(302)
         expect(flash[:alert]).to eq("Success!")
