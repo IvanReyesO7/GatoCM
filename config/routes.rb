@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
-  resources :users, param: :username, path: '/', only: [:show, :edit, :destroy] do
-    post '/' => 'users#update', as: :update
+  resources :users, param: :username, path: '/', only: [:show, :edit, :destroy, :update] do
+    post '/user_update/' => 'users#update', as: :update_info
     get '/' => 'applications#index', as: :applications_index
     get 'account_settings' => 'account_settings#show', as: :user_account_settings
     resources :applications, param: :name, path: '/', only: [:show, :edit, :update, :destroy, :new, :create] do
