@@ -15,7 +15,6 @@ class AccountSettingsController < ApplicationController
   end
 
   def raise_unless_logged_in
-    p current_user
     raise if current_user != @user && !current_user.admin?
   end
 end
