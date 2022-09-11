@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       redirect_to "/#{@user.username}/account_settings"
+      flash[:alert] = "Success!"
     else
       flash[:alert] = "Sorry, something went wrong."
       redirect_to user_user_account_settings_path
