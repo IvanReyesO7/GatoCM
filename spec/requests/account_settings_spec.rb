@@ -37,6 +37,15 @@ RSpec.describe "AccountSettings", type: :request do
         }
         expect(flash[:alert]).to eq("Sorry, something went wrong. Username has already been taken")
       end
+
+      it "shouldn't allow users to change their username if it has been taken" do
+        @user_3 = create(:user, username: "user_3", email: "user_3@me.com") 
+        post "/#{user.username}/user_update/",
+        params: {
+          user: {email: "user_3@me.com"}
+        }
+        expect(flash[:alert]).to eq("Sorry, something went wrong. Email has already been taken")
+      end
     end
   end
 end
