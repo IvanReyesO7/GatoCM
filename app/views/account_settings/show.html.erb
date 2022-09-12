@@ -3,7 +3,7 @@
   <span class="content-title">Account Settings</span>
 </div>
 
-<%= simple_form_for(@user, method: :post, url: user_update_info_path(username: @user.username)) do |form| %>
+<%= simple_form_for(@user, method: :post, url: user_update_info_path) do |form| %>
   <span>Username</span>
   <%= form.input :username %>
   <span>Email</span>
