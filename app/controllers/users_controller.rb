@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def update
-    p "It goes here"
     @user = current_user
     if @user.update(user_params)
       redirect_to "/#{@user.username}/account_settings"
@@ -14,6 +13,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username)
+    params.require(:user).permit(:username, :email)
   end
 end
