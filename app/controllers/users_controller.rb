@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       redirect_to "/#{@user.username}/account_settings"
       flash[:alert] = "Success!"
     else
-      flash[:alert] = "Sorry, something went wrong."
+      flash[:alert] = "Sorry, something went wrong. #{@user.errors.full_messages[0]}"
       redirect_to user_user_account_settings_path
     end
   end
