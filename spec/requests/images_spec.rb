@@ -5,7 +5,7 @@ RSpec.describe "Images", type: :request do
 
     let (:user) { create(:user) }
     let (:user_2) { create(:user, username: "user_2", email: "user_2@me.com") }
-    let (:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+    let (:admin) { create(:admin_user, username: "admin01", email: "01@me.com") }
     
     context "Normal users" do
 
@@ -46,7 +46,7 @@ RSpec.describe "Images", type: :request do
   describe "GET /new" do
     let (:user) { create(:user) }
     let (:user_2) { create(:user, username: "user_2", email: "user_2@me.com") }
-    let (:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+    let (:admin) { create(:admin_user, username: "admin01", email: "admin@me.com") }
     
     context "Normal users" do
 
@@ -84,7 +84,7 @@ RSpec.describe "Images", type: :request do
   describe "POST /create" do
     let (:user) { create(:user) }
     let (:user_2) { create(:user, username: "user_2", email: "user_2@me.com") }
-    let (:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+    let (:admin) { create(:admin_user, username: "admin01", email: "admin@me.com") }
 
     before do
       @file = fixture_file_upload('drake.jpeg').tap do |file|
@@ -179,7 +179,7 @@ RSpec.describe "Images", type: :request do
   describe "DELETE/ " do
     let(:user) { create(:user) }
     let(:user_1) { create(:user, username: "user_2", email: "user_2@me.com") }
-    let(:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+    let(:admin) { create(:admin_user, username: "admin01", email: "admin@me.com") }
 
 
     context "Normal user" do
