@@ -1,0 +1,3 @@
+admin
+account_settings
+user_update
