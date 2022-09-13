@@ -4,7 +4,7 @@ RSpec.describe "Items", type: :request do
   describe "GET /new" do
     let (:user) { create(:user) }
     let (:user_2) { create(:user, username: "user_2", email: "user_2@me.com") }
-    let (:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+    let (:admin) { create(:admin_user, username: "admin01", email: "admin@me.com") }
     
     context "Normal users" do
 
@@ -45,7 +45,7 @@ RSpec.describe "Items", type: :request do
   describe "POST /create" do
     let (:user) { create(:user) }
     let (:user_2) { create(:user, username: "user_2", email: "user_2@me.com") }
-    let (:admin) { create(:admin_user, username: "admin", email: "admin@me.com") }
+    let (:admin) { create(:admin_user, username: "admin01", email: "admin@me.com") }
     
     context "Normal users" do
 
