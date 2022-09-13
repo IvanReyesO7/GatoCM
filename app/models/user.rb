@@ -10,6 +10,9 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
+  extend Blacklist
+  validates :username, exclusion: { in: blacklist, message: "The username you choose is invalid, please try again." }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
