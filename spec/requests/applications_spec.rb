@@ -11,7 +11,7 @@ RSpec.describe "Applications", type: :request do
   end
 
   let(:admin) do
-    create(:admin_user, username: "admin", email: "admin@me.com")
+    create(:admin_user, username: "admin01", email: "admin@me.com")
   end
 
   describe "GET /index" do
