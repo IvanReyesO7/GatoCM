@@ -10,7 +10,6 @@ class Api::V1::CodesController < Api::Controller
       @code = Code.find_by!(title: "#{codes_params[:title]}.#{codes_params[:format]}", 
                             file_type: codes_params[:type],
                             application: @application)
-      p @code
       case @code.file_type
       when 'javascript'
         render_javascript
