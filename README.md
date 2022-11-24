@@ -112,4 +112,4 @@ To run the rspecs, run:
 ```
 docker-compose run gatocm bundle exec rspec
 ```
-
+Don't hesitate to open issues if you find any bug.
