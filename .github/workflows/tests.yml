@@ -38,7 +38,6 @@ jobs:
         uses: ruby/setup-ruby@v1 # short for https://github.com/ruby/setup-ruby
         with:
           # runs 'bundle install' and caches installed gems automatically
-          ruby-version: 2.7.6
           bundler-cache: true
       - name: Set up Node
         uses: actions/setup-node@v2
