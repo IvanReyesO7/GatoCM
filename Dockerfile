@@ -1,4 +1,4 @@
-FROM ruby:2.7.3
+FROM ruby:3.0.0
 
 RUN apt-get update -qq && apt-get install -y build-essential\
                                              libpq-dev      \
@@ -16,7 +16,7 @@ WORKDIR /gatocm
 COPY Gemfile /gatocm/Gemfile
 COPY Gemfile.lock /gatocm/Gemfile.lock
 
-RUN gem install bundler:2.2.26
+RUN gem install bundler
 RUN bundle install
 RUN yarn install
 
