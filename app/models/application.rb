@@ -26,7 +26,7 @@ class Application < ApplicationRecord
   end
 
   def encode_name
-    URI.encode(self.name)
+    CGI.escape(self.name)
   end
 
   def display_codes_in_order
