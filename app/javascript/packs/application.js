@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'prismjs'
 import "jquery"
+import "bootstrap";
 
 //= require jquery3
 //= require jquery_ujs
