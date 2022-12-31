@@ -1,7 +1,7 @@
 <span class="route"><%= @user.username %> /</span>
 <div class="content-title-container">
   <span class="content-title">Hi <%= @user.username %>!</span>
-  <%=link_to "Create an app", new_user_application_path, :method => :get , class: 'primary-btn'%>
+  <%=link_to "Create an app", new_user_application_path, :method => :get , class: 'btn btn-dark'%>
 </div>
 <div class="app-cards">
 <% @applications.each do |application| %>
