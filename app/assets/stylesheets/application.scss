@@ -52,7 +52,13 @@ body {
 .no-decoration {
   text-decoration: none;
   color: $black-color;
+  &:hover {
+    text-decoration: none;
+    color: $black-color;
+  }
 }
+
+
 
 // Main contaner
 .main-container {

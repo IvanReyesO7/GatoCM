@@ -9,7 +9,7 @@
     <%= simple_form_for image, url: user_application_images_path(user_username: @user.username, application_name: @application.name), method: :post do |f| %>
       <%= f.input :title, label: 'Title' %>
       <%= f.input :photo, as: :file %>
-      <%= f.button :submit, "Upload", class: 'primary-btn-small' %>
+      <%= f.button :submit, "Upload", class: 'btn btn-dark' %>
     <% end %>
   </div>
 </div>
