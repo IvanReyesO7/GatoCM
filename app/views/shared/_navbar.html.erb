@@ -11,7 +11,7 @@
           </strong>
       </span>
     <% else %>
-      <%= link_to 'Log in', new_user_session_path, :method => :new, class: 'btn btn-outline-dark' %>
+      <%= link_to 'Log in', new_user_session_path, :method => :get, class: 'btn btn-outline-dark' %>
       <%= link_to 'Get Started', new_user_registration_path, :method => :get , class: 'btn btn-dark'%>
     <% end %>
   </div>
