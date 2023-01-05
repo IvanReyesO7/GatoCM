@@ -8,9 +8,12 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if current_page?(new_user_session_path) %>
+      <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css">
+    <% end %> 
   </head>
-  <body>
-    <% if !current_page?(new_user_session_path) %>
+  <% if !current_page?(new_user_session_path) %>
+    <body>
       <%= render partial: 'shared/navbar'%>
       <div class="main-content">
         <% if current_user %>
@@ -22,8 +25,10 @@
           <%= yield %>
         </div>
       </div>
-    <% else %>
-      <%= yield %>
-    <% end %>
-  </body>
+    </body>
+  <% else %>
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><%= alert %></div>
+    <%= yield %>
+  <% end %>
 </html>
