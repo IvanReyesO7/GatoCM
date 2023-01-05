@@ -10,16 +10,20 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= render partial: 'shared/navbar'%>
-    <div class="main-content">
-      <% if current_user %>
-        <%= render partial: 'shared/vertical-navbar'%>
-      <% end %>
-      <div class="content">
-        <div class="notice"><%= notice %></div>
-        <div class="alert"><%= alert %></div>
-        <%= yield %>
+    <% if !current_page?(new_user_session_path) %>
+      <%= render partial: 'shared/navbar'%>
+      <div class="main-content">
+        <% if current_user %>
+          <%= render partial: 'shared/vertical-navbar'%>
+        <% end %>
+        <div class="content">
+          <div class="notice"><%= notice %></div>
+          <div class="alert"><%= alert %></div>
+          <%= yield %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>
