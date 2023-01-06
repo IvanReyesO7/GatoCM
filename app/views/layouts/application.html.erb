@@ -5,15 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <% if current_page?(new_user_session_path) %>
-      <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css">
-    <% end %> 
   </head>
-  <% if !current_page?(new_user_session_path) %>
-    <body>
+  <body>
+    <% if !(controller_name == "sessions" && action_name == "new") %>
       <%= render partial: 'shared/navbar'%>
       <div class="main-content">
         <% if current_user %>
@@ -25,10 +21,10 @@
           <%= yield %>
         </div>
       </div>
-    </body>
-  <% else %>
-    <div class="notice"><%= notice %></div>
-    <div class="alert"><%= alert %></div>
-    <%= yield %>
-  <% end %>
+    <% else %>
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+      <%= yield %>
+    <% end %>
+  </body>
 </html>
