@@ -9,7 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <% if !(controller_name == "sessions" && action_name == "new") %>
+    <% if !((controller_name == "sessions" || controller_name == "registrations") && action_name == "new") %>
       <%= render partial: 'shared/navbar'%>
       <div class="main-content">
         <% if current_user %>
