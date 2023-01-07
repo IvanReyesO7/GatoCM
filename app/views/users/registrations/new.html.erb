@@ -8,7 +8,7 @@
         <%= f.text_field :username, autofocus: true, required: true, autocomplete: "username", class: "form-control", placeholder: "Username" %>
         <%= f.password_field :password, autocomplete: "current-password", class: "form-control sign-up-password", placeholder: "Password (#{@minimum_password_length} characters minimum)", required: true %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control sign-up-password-confirmation", placeholder: "Password (#{@minimum_password_length} characters minimum)", required: true %>
-        <%= f.submit "Create an account", class: "btn btn-lg btn-dark btn-block" %>
+        <%= f.submit "Create an account", class: "btn btn-dark btn-block" %>
         <p class="mt-5 mb-3 text-muted">&copy; GatoCM - 2023</p>
       <% end %>
     </div>

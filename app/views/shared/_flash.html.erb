@@ -1,0 +1,27 @@
+<% if flash[:alert] %>
+  <% if flash[:alert].is_a?(Array) %>
+    <div class="flash-live">
+      <% flash[:alert].each do |msg| %>
+        <div class="alert alert-danger flash-alert-live">
+          <button type="button" class="btn-close" style="font-size: 10px;" data-bs-dismiss="alert" aria-label="Close"></button>
+          <%= msg %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="flash-live">
+      <div class="alert alert-danger flash-alert-live">>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"  style="font-size: 10px;" aria-label="Close"></button>
+        <%= alert %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<% if flash[:notice] %>
+  <div class="flash-live">
+    <div class="alert alert-success flash-alert-live">
+      <button type="button" class="btn-close" data-bs-dismiss="alert"  style="font-size: 10px;" aria-label="Close"></button>
+      <%= notice %>
+    </div>
+  </div>
+<% end %>

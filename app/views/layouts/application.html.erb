@@ -11,20 +11,19 @@
   <body>
     <% if !((controller_name == "sessions" || controller_name == "registrations") && action_name == "new") %>
       <%= render partial: 'shared/navbar'%>
+      <%= render partial: 'shared/flash'%>
       <div class="main-content">
         <% if current_user %>
           <%= render partial: 'shared/vertical-navbar'%>
         <% end %>
         <div class="content">
-          <div class="notice"><%= notice %></div>
-          <div class="alert"><%= alert %></div>
           <%= yield %>
         </div>
       </div>
     <% else %>
-      <div class="notice"><%= notice %></div>
-      <div class="alert"><%= alert %></div>
+      <%= render partial: 'shared/flash'%>
       <%= yield %>
     <% end %>
   </body>
 </html>
+<%= javascript_pack_tag 'flash' %>
