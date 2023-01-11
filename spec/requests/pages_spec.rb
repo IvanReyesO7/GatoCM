@@ -13,6 +13,7 @@ RSpec.describe "Pages", type: :request do
         get "/"
 
         expect(response).to redirect_to("/#{user.username}")
+        expect(response.status).to eq(302)
       end
     end
     context "No session user" do
