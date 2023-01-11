@@ -6,5 +6,5 @@ $('.flash-alert-live').toArray().forEach((flash, index) => {
     setTimeout(()=> {
       slideToTheLeft(flash);
     }, (index * 100));
-  }, 5000);
+  }, 3000);
 });
