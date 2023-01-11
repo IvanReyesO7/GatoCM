@@ -1,7 +1,7 @@
 <body style="background-color: #F0F0F0">
   <div id="main-form-container" class="text-center">
     <div class="form-signin">
-      <%= image_tag "logo.png", alt: "GatoCmM's logo", class: "mb-4", width: "300" %>
+    <%= link_to image_tag("logo.png", alt: "GatoCmM's logo", class: "mb-4", width: "300"), "/" %>
       <h1 class="h3 mb-3 font-weight-normal">Get started!</h1>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: "form-control", placeholder: "Email address" %>
