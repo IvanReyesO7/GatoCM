@@ -11,7 +11,7 @@
   <% else %>
     <div class="flash-live">
       <div class="alert alert-danger flash-alert-live">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"  style="font-size: 10px;" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"  style="font-size: 10px; background-color: #ff000040;" aria-label="Close"></button>
         <%= alert %>
       </div>
     </div>
@@ -20,7 +20,7 @@
 <% if flash[:notice] %>
   <div class="flash-live">
     <div class="alert alert-success flash-alert-live">
-      <button type="button" class="btn-close" data-bs-dismiss="alert"  style="font-size: 10px;" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"  style="font-size: 10px; background-color: #98d8be;" aria-label="Close"></button>
       <%= notice %>
     </div>
   </div>
