@@ -1,6 +1,4 @@
-name: CI
-
-# triggers on
+name: RSpec tests
 on: 
   push
 
@@ -58,7 +56,7 @@ jobs:
           cp config/database.github.yml config/database.yml
           bundle exec rails db:create db:migrate
           bundle exec rails webpacker:compile
-      - name: Run rspec tests
-        run: bundle exec rspec
+      - name: Run RSpec tests
+        run: bundle exec rspec --format d
         env:
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
