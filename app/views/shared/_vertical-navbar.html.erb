@@ -1,5 +1,8 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-  <%=link_to image_tag("https://avatars.dicebear.com/api/male/#{current_user.username}.svg?background=%767676", alt: "User profile image", class: "user-image"), "/"%>
+  <div style="text-align: center;">
+    <span class="badge rounded-pill text-bg-dark"><%= current_user.username %></span>
+    <%=link_to image_tag("https://avatars.dicebear.com/api/male/#{current_user.username}.svg?background=%767676", alt: "User profile image", class: "user-image"), "/"%>
+  </div>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li>
