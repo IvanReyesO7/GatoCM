@@ -7,7 +7,7 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li>
-      <a href="<%= user_applications_index_path(user_username: current_user.username) %>" class="nav-link <%= current_page?("/#{current_user.username}") ? "active" : "link-dark" %>">
+      <a href="<%= user_applications_index_path(user_username: current_user.username) %>" class="nav-link <%= current_page?("/#{current_user.username}") || @dashboard ? "active" : "link-dark" %>">
         <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
         Dashboard
       </a>
