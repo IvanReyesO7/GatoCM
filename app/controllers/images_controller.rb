@@ -7,6 +7,7 @@ class ImagesController < ApplicationController
   before_action :select_user_application_from_params, only: [:new, :create, :serve]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
   before_action :check_read_token, only: [:serve]
+  before_action :set_dashboard
 
   SUPPORTED_FORMATS = ["image/png", "image/jpeg", "image/jpg"]
 

@@ -5,6 +5,7 @@ class CodesController < ApplicationController
   before_action :select_user_application_from_params, only: [:new, :create, :render_raw]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
   before_action :check_read_token, only: [:render_raw]
+  before_action :set_dashboard
   protect_from_forgery except: :render_raw
 
   def show

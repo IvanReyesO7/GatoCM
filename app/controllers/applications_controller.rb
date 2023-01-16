@@ -41,10 +41,6 @@ class ApplicationsController < ApplicationController
     redirect_to user_applications_path
   end
 
-  def set_dashboard
-    @dashboard = true
-  end
-
   private
 
   def application_params

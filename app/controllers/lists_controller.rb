@@ -6,6 +6,7 @@ class ListsController < ApplicationController
   before_action :raise_unless_visible_component, only: [:show]
   before_action :raise_unless_visible, only: [:create, :new, :destroy]
   before_action :check_read_token, only: [:serve_items]
+  before_action :set_dashboard
 
   
   def show

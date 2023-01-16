@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
       raise ActiveRecord::RecordNotFound.new
     end
   end
+
+  def set_dashboard
+    @dashboard = true
+  end
 end
