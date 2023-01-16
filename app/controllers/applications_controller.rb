@@ -4,6 +4,7 @@ class ApplicationsController < ApplicationController
   before_action :raise_unless_visible_multiple, only: [:index]
   before_action :raise_unless_visible, only: [:show]
   before_action :select_user_from_params, only: [:create]
+  before_action :set_dashboard
   
   def index
   end
@@ -38,6 +39,10 @@ class ApplicationsController < ApplicationController
     @application = Application.find_by!(name: application_params[:name])
     @application.destroy
     redirect_to user_applications_path
+  end
+
+  def set_dashboard
+    @dashboard = true
   end
 
   private
