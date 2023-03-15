@@ -1,4 +1,4 @@
-## GatoCM
+## GatoCM 
 This a small personal project, the idea is to create a centralized and easy to visualize a content manager dashboard.
 Something similar to a CMS, but with more flexible endpoints and the ability to create objects through the terminal with no need to use the UI.
 
